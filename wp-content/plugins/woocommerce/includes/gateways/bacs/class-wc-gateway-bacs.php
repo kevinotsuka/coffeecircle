@@ -80,7 +80,7 @@ class WC_Gateway_BACS extends WC_Payment_Gateway {
 				'title'       => __( 'Title', 'woocommerce' ),
 				'type'        => 'text',
 				'description' => __( 'This controls the title which the user sees during checkout.', 'woocommerce' ),
-				'default'     => __( '銀行振込', 'woocommerce' ),
+				'default'     => __( 'Bank Transfer (Furikomi)', 'woocommerce' ),
 				'desc_tip'    => true,
 			),
 			'description' => array(
