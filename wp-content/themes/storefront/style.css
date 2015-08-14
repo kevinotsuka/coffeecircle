@@ -1584,7 +1584,7 @@ fieldset {
   display: none;
 }
 
-.site-title .a {
+.site-title {
   pointer-events: none;
   cursor: default;
 }
