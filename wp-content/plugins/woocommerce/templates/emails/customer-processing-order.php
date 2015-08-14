@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php do_action('woocommerce_email_header', $email_heading); ?>
 
-<p><?php _e( "ありがとうございます。ご注文を承りました。", 'woocommerce' ); ?></p>
+<p><?php _e( "Thank you for your order.", 'woocommerce' ); ?></p>
 
 <h2><?php printf( __( 'Order #%s', 'woocommerce' ), $order->get_order_number() ); ?></h2>
 
