@@ -1,0 +1,104 @@
+/* General CSS */
+.swpm-margin-10{
+    margin: 10px;
+}
+.swpm-margin-top-10{
+    margin-top: 10px;
+}
+.swpm-margin-bottom-10{
+    margin-bottom: 10px;
+}
+.swpm-hidden{
+    display: none;
+}
+
+.swpm-yellow-box{
+    margin: 10px 0 15px;
+    padding: 10px;
+    background-color: #FFFFE0;
+    border-color: #E6DB55;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;    
+}
+
+.swpm-grey-box{
+    margin: 10px 0 15px;
+    padding: 10px;
+    background-color: #DDDDDD;
+    border-color: #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+}
+.swpm-green-box {
+    margin: 10px 0 15px;
+    padding: 10px;
+    background-color: #CCF4D6;
+    border-color: #059B53;
+    color: #043B14;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.swpm-red-box {
+    margin: 10px 0 15px;
+    padding: 10px;
+    background-color: #FFEBE8;
+    border-color: #CC0000;
+    color: #333333;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/* Login form CSS */
+.swpm-login-widget-form input,.swpm-login-widget-form checkbox{
+    width: auto;
+}
+.swpm-username-input, .swpm-password-input{
+    margin-bottom: 10px;
+}
+.swpm-login-submit{
+    margin-bottom: 10px;    
+}
+.swpm-login-widget-action-msg{
+    font-weight: bold;    
+}
+.swpm-logged-label{
+    font-weight: bold;
+}
+
+/* Password reset form CSS */
+.swpm-password-reset-widget-form table{
+    border: none;
+}
+swpm-password-reset-widget-form tr{
+    border: none;
+}
+.swpm-password-reset-widget-form td{
+    border: none;
+}
+
+/* Registration form CSS */
+.swpm-registration-widget-form td{
+    min-width: 100px;
+}
+
+.swpm-restricted{
+    font-weight: bold;
+    color:red;
+}
+.swpm-select-box-left{
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+/* Edit profile form CSS */
+.swpm-account-delete-button{
+    text-align: center;
+}
+.swpm-account-delete-button a{
+    color: red !important;
+}
