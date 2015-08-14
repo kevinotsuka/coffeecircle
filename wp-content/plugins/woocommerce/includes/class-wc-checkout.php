@@ -117,8 +117,8 @@ class WC_Checkout {
 			'order_comments' => array(
 				'type' => 'textarea',
 				'class' => array('notes'),
-				'label' => __( 'Order Notes', 'woocommerce' ),
-				'placeholder' => _x('Notes about your order, e.g. special notes for delivery.', 'placeholder', 'woocommerce')
+				'label' => __( '時間指定', 'woocommerce' ),
+				'placeholder' => _x('なし・午前中・12時〜14時・14時〜16時・16時〜18時・18時〜20時・20時〜21時', 'placeholder', 'woocommerce')
 			)
 		);
 
