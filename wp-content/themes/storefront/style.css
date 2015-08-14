@@ -1585,11 +1585,13 @@ fieldset {
   display: none;
 }
 
-.site-title {
+.site-title,
+.woocommerce-breadcrumb {
   pointer-events: none;
   cursor: default;
 }
 
-.single-product .product .cart .button {
+.single-product .product .cart .button,
+.wc-proceed-to-checkout .button {
   background-color: #000;
 }
