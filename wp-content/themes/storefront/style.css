@@ -1581,7 +1581,7 @@ fieldset {
 
 .woocommerce-result-count,
 .site-footer,
-.woocommerce-tabs .wc-tabs-wrapper {
+.woocommerce-tabs {
   display: none;
 }
 
