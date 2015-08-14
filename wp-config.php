@@ -45,16 +45,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',              getenv('AUTH_KEY'));
-define('SECURE_AUTH_KEY',       getenv('SECURE_AUTH_KEY'));
-define('LOGGED_IN_KEY',         getenv('LOGGED_IN_KEY'));
-define('NONCE_KEY',             getenv('NONCE_KEY'));
-define('AUTH_SALT',             getenv('AUTH_SALT'));
-define('SECURE_AUTH_SALT',      getenv('SECURE_AUTH_SALT'));
-define('LOGGED_IN_SALT',        getenv('LOGGED_IN_SALT'));
-define('NONCE_SALT',            getenv('NONCE_SALT'));
-define('AWS_ACCESS_KEY_ID',     getenv('AWS_ACCESS_KEY_ID'));
-define('AWS_SECRET_ACCESS_KEY', getenv('AWS_SECRET_ACCESS_KEY'));
+define('AUTH_KEY',         '&V -a@h/g^/IhsEu2}|-*y.q4;T^;.3q E*jwHj^Gr8KD>R]dKu~>!M4I-sazq{7');
+define('SECURE_AUTH_KEY',  'ue:(XVEN{i(|gc}q^l6GZARx}&I}=UFkRM*E[}.dcIZ >(5l`o-g]5&mO:*aMtIK');
+define('LOGGED_IN_KEY',    '%a3}S,,n5Rd_;qk{-{V(JZn|~A[k!-z8mA0-fzbGf{x%o?0p0lS%1Vd7rVM>jga1');
+define('NONCE_KEY',        'mN2/{G0d8ysvC?@iGTj*Z>/H<!c:{)((q$c-x.+- %8zw9e::vfRxrIaNv|00|:|');
+define('AUTH_SALT',        '{Mm%z7.b~~CJ>KMhC:bSRc*@58g(=K3% Bh|jPX`4+%%Rk01Larc96Q8zV(.1vis');
+define('SECURE_AUTH_SALT', '<Bn4%ud`i{6?bwj|R>;N.W%BDogx{4]Gpgd4vqJ-pB*,J-)-#lv/9|@%84arXCkt');
+define('LOGGED_IN_SALT',   'zmY_0O}Tb$ISa:6D<-iF!-q^B.7RWL| OJF)+W=SJcM|zSe]C/U^lz(~=DQ+QQI`');
+define('NONCE_SALT',       'SBRFrQmt$lwsR^t*&Y]{FgV`^wol+F!u-;^vmv@xzs-W55+*+^]WpAp7M)U6!f$`');
 
 /**#@-*/
 
