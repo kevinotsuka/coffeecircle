@@ -33,7 +33,7 @@ if ( $order ) : ?>
 
 	<?php else : ?>
 
-		<p><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); ?></p>
+		<p><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'ありがとうございます。ご注文を承りました。', 'woocommerce' ), $order ); ?></p>
 
 		<ul class="order_details">
 			<li class="order">
