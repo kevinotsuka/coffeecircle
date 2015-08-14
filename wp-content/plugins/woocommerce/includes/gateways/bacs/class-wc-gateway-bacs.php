@@ -80,14 +80,14 @@ class WC_Gateway_BACS extends WC_Payment_Gateway {
 				'title'       => __( 'Title', 'woocommerce' ),
 				'type'        => 'text',
 				'description' => __( 'This controls the title which the user sees during checkout.', 'woocommerce' ),
-				'default'     => __( 'Direct Bank Transfer', 'woocommerce' ),
+				'default'     => __( '銀行振込', 'woocommerce' ),
 				'desc_tip'    => true,
 			),
 			'description' => array(
 				'title'       => __( 'Description', 'woocommerce' ),
 				'type'        => 'textarea',
 				'description' => __( 'Payment method description that the customer will see on your checkout.', 'woocommerce' ),
-				'default'     => __( 'Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won\'t be shipped until the funds have cleared in our account.', 'woocommerce' ),
+				'default'     => __( 'お客様のご入金確認後、商品を出荷致します。', 'woocommerce' ),
 				'desc_tip'    => true,
 			),
 			'instructions' => array(
