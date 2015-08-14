@@ -68,7 +68,7 @@ class WC_Gateway_COD extends WC_Payment_Gateway {
 				'title'       => __( 'Title', 'woocommerce' ),
 				'type'        => 'text',
 				'description' => __( 'Payment method description that the customer will see on your checkout.', 'woocommerce' ),
-				'default'     => __( '代金引換', 'woocommerce' ),
+				'default'     => __( 'Cash on Delivery', 'woocommerce' ),
 				'desc_tip'    => true,
 			),
 			'description' => array(
