@@ -1583,3 +1583,8 @@ fieldset {
 .site-footer {
   display: none;
 }
+
+.site-title .a {
+  pointer-events: none;
+  cursor: default;
+}
