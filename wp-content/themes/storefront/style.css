@@ -1580,11 +1580,16 @@ fieldset {
   /*kevin edits */
 
 .woocommerce-result-count,
-.site-footer {
+.site-footer,
+.reviews_tab {
   display: none;
 }
 
 .site-title {
   pointer-events: none;
   cursor: default;
+}
+
+.single-product .product .cart .button {
+  background-color: #000;
 }
