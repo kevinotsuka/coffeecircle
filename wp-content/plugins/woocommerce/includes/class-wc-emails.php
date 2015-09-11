@@ -215,7 +215,7 @@ class WC_Emails {
 	 * @param string $attachments (default: "")
 	 * @return bool
 	 */
-	public function send( $to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = "" ) {
+	public function send( $to, $subject, $message, $headers = "Content-Type: text/html; charset=UTF-8\r\n", $attachments = "" ) {
 		// Send
 		$email = new WC_Email();
 		return $email->send( $to, $subject, $message, $headers, $attachments );
