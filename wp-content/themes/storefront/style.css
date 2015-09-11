@@ -1595,3 +1595,7 @@ fieldset {
 .wc-proceed-to-checkout .button {
   background-color: #000;
 }
+
+.woocommerce-billing-fields {
+  display: none;
+}
