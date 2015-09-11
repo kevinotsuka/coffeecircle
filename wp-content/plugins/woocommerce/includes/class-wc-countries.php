@@ -484,40 +484,40 @@ class WC_Countries {
 	public function get_default_address_fields() {
 		$fields = array(
 			'first_name' => array(
-				'label'    => __( '名', 'woocommerce' ),
+				'label'    => __( 'First Name', 'woocommerce' ),
 				'required' => true,
 				'class'    => array( 'form-row-first' ),
 			),
 			'last_name' => array(
-				'label'    => __( '性', 'woocommerce' ),
+				'label'    => __( 'Last Name', 'woocommerce' ),
 				'required' => true,
 				'class'    => array( 'form-row-last' ),
 				'clear'    => true
 			),
 			'company' => array(
-				'label' => __( '会社名', 'woocommerce' ),
+				'label' => __( 'Company Name', 'woocommerce' ),
 				'class' => array( 'form-row-wide' ),
 			),
 			'country' => array(
 				'type'     => 'country',
-				'label'    => __( '国', 'woocommerce' ),
+				'label'    => __( 'Country', 'woocommerce' ),
 				'required' => true,
 				'class'    => array( 'form-row-wide', 'address-field', 'update_totals_on_change' ),
 			),
 			'address_1' => array(
-				'label'       => __( '住所', 'woocommerce' ),
-				'placeholder' => _x( '丁目、番地、号', 'placeholder', 'woocommerce' ),
+				'label'       => __( 'Address', 'woocommerce' ),
+				'placeholder' => _x( 'Street address', 'placeholder', 'woocommerce' ),
 				'required'    => true,
 				'class'       => array( 'form-row-wide', 'address-field' )
 			),
 			'address_2' => array(
-				'placeholder' => _x( '建物名、部屋番号など', 'placeholder', 'woocommerce' ),
+				'placeholder' => _x( 'Apartment, suite, unit etc. (optional)', 'placeholder', 'woocommerce' ),
 				'class'       => array( 'form-row-wide', 'address-field' ),
 				'required'    => false
 			),
 			'city' => array(
-				'label'       => __( '市区町村', 'woocommerce' ),
-				'placeholder' => __( '市区町村', 'woocommerce' ),
+				'label'       => __( 'Town / City', 'woocommerce' ),
+				'placeholder' => __( 'Town / City', 'woocommerce' ),
 				'required'    => true,
 				'class'       => array( 'form-row-wide', 'address-field' )
 			),
@@ -529,8 +529,8 @@ class WC_Countries {
 				'validate'    => array( 'state' )
 			),
 			'postcode' => array(
-				'label'       => __( '郵便番号', 'woocommerce' ),
-				'placeholder' => __( '郵便番号', 'woocommerce' ),
+				'label'       => __( 'Postcode / Zip', 'woocommerce' ),
+				'placeholder' => __( 'Postcode / Zip', 'woocommerce' ),
 				'required'    => true,
 				'class'       => array( 'form-row-last', 'address-field' ),
 				'clear'       => true,
@@ -756,7 +756,7 @@ class WC_Countries {
 				),
 				'JP' => array(
 					'state' => array(
-						'label' => __( '都道府県', 'woocommerce' )
+						'label' => __( 'Prefecture', 'woocommerce' )
 					)
 				),
 				'KR' => array(
@@ -960,14 +960,14 @@ class WC_Countries {
 			// Add email and phone after company or last
 			if ( $type == 'billing_' && ( 'company' === $key || ( ! array_key_exists( 'company', $fields ) && $key === end( array_keys( $fields ) ) ) ) ) {
 				$address_fields['billing_email'] = array(
-					'label'		=> __( 'Eメール', 'woocommerce' ),
+					'label'		=> __( 'Email Address', 'woocommerce' ),
 					'required'	=> true,
 					'type'		=> 'email',
 					'class'		=> array( 'form-row-first' ),
 					'validate'	=> array( 'email' ),
 				);
 				$address_fields['billing_phone'] = array(
-					'label'    	=> __( '電話番号', 'woocommerce' ),
+					'label'    	=> __( 'Phone', 'woocommerce' ),
 					'required' 	=> true,
 					'type'		=> 'tel',
 					'class'    	=> array( 'form-row-last' ),
