@@ -657,3 +657,26 @@ add_action( 'customize_controls_print_styles', 'ttfmake_plus_styles', 20 );
 function ttfmake_get_plus_link( $deprecated = '' ) {
 	return 'https://thethemefoundry.com/make-buy/';
 }
+
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+ 
+function custom_override_checkout_fields( $fields ) {
+    unset($fields['billing']['billing_first_name']);
+    unset($fields['billing']['billing_last_name']);
+    unset($fields['billing']['billing_company']);
+    unset($fields['billing']['billing_address_1']);
+    unset($fields['billing']['billing_address_2']);
+    unset($fields['billing']['billing_city']);
+    unset($fields['billing']['billing_postcode']);
+    unset($fields['billing']['billing_country']);
+    unset($fields['billing']['billing_state']);
+    unset($fields['billing']['billing_phone']);
+    unset($fields['order']['order_comments']);
+    unset($fields['billing']['billing_address_2']);
+    unset($fields['billing']['billing_postcode']);
+    unset($fields['billing']['billing_company']);
+    unset($fields['billing']['billing_last_name']);
+    unset($fields['billing']['billing_email']);
+    unset($fields['billing']['billing_city']);
+    return $fields;
+}
