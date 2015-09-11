@@ -3745,3 +3745,15 @@ div.sharedaddy {
 .yoast-seo-breadcrumb {
 	font-size: 0.8em;
 }
+
+/*kevin edits*/
+
+.woocommerce-billing-fields {
+  display: none;
+}
+
+.site-title,
+.woocommerce-breadcrumb {
+  pointer-events: none;
+  cursor: default;
+}
