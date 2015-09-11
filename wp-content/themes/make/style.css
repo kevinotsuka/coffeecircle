@@ -3758,6 +3758,10 @@ div.sharedaddy {
   cursor: default;
 }
 
-.site-info {
+.site-info,
+.entry-date .published,
+.entry-author,
+.comments-area,
+.fa-rss {
 	display: none;
 }
