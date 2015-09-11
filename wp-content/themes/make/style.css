@@ -3762,6 +3762,7 @@ div.sharedaddy {
 .entry-date .published,
 .entry-author,
 .comments-area,
-.fa-rss {
+.fa-rss,
+.woocommerce-result-count {
 	display: none;
 }
