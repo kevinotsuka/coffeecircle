@@ -35,11 +35,3 @@ if ( $totals = $order->get_order_item_totals() ) {
 }
 
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
-
-do_action( 'woocommerce_email_after_order_table', $order, $sent_to_admin, $plain_text );
-
-do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_text );
-
-echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
-
-echo apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) );
