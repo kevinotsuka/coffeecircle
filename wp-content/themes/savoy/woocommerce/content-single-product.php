@@ -118,7 +118,7 @@ $summary_column_size = ( isset( $nm_theme_options['product_image_column_size'] )
                                 <div class="nm-product-summary-title">
 									<?php
                                         woocommerce_template_single_title();
-                                        woocommerce_template_single_price() echo ' /kg'; 
+                                        woocommerce_template_single_price(); 
                                     ?>
                                 </div>
                             </div>
