@@ -219,7 +219,7 @@
 			$output .= ' current-cat';
 		}
 		
-		$output .=  '">' . '<a href="' . esc_url( get_term_link( (int) $category->term_id, 'product_cat' ) ) . '"' . 'id="' . $category->term_id .'">' . esc_attr( $category->name ) . '</a></li>';
+		$output .=  '">' . '<a href="' . esc_url( get_term_link( (int) $category->term_id, 'product_cat' ) ) . '"' . 'id="roaster' . $category->term_id .'">' . esc_attr( $category->name ) . '</a></li>';
 		
 		return $output;
 	}
