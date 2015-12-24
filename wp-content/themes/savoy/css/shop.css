@@ -1951,7 +1951,7 @@
 	width: 32px;
 	height: 32px;
 }
-
+/*edited by kevin*/
 /* Summary: Quantity */
 .product-summary .nm-quantity-wrap {
 	position: relative;
@@ -1960,10 +1960,13 @@
 	border: 1px solid #dadada;
 	border-bottom: 0 none;	
 	overflow: hidden;
+	padding-top: 5px;
 }
+
 .product-summary .nm-quantity-wrap label {
-	display: none;
+	font-weight: bold;
 }
+/*kevin edits done*/
 .product-summary .quantity {
 }
 .product-summary .qty {
