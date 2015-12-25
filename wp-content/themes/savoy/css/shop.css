@@ -4308,3 +4308,57 @@ div.create-account span {
 		font-size: 16px;
 	}
 }
+
+a#roaster9 {
+   background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/streamerbanner.jpg);
+    display: block;
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    text-indent: -9999px;
+    background-size: 400px;
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+ a#roaster9:hover {
+      opacity: 0.5;
+      }
+
+a#roaster11 {
+    background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/glitchbanner.jpg);
+    display: block;
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    text-indent: -9999px;
+    background-size: 400px;
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+ a#roaster11:hover {
+      opacity: 0.5;
+      }
+
+a#roaster13 {
+    background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/takamurabanner.jpg);
+    display: block;
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    text-indent: -9999px;
+    background-size: 400px;
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+ a#roaster13:hover {
+      opacity: 0.5;
+      }
