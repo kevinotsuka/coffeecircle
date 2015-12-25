@@ -277,8 +277,8 @@
 				$all_categories_class = ' class="current-cat"';
 			}
 		}
-		
-		$output = '<li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li>';
+		/*taking out all selector for now 12/25/2015, and yes, on Christmas I was working ;) */
+		/*$output = '<li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li>';*/
 		$sub_output = '';
 		
 		// Categories order
