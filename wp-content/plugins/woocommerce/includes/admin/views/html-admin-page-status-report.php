@@ -322,7 +322,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$active_plugins = (array) get_option( 'active_plugins', array() );
 
 		if ( is_multisite() ) {
-			$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
+			$network_activated_plugins = array_keys( get_site_option( 'active_sitewide_plugins', array() ) );
+			$active_plugins            = array_merge( $active_plugins, $network_activated_plugins );
 		}
 
 		foreach ( $active_plugins as $plugin ) {
@@ -551,7 +552,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$active_theme         = wp_get_theme();
 		$theme_version        = $active_theme->Version;
 		$update_theme_version = $active_theme->Version;
-		$api                  = themes_api( 'theme_information', array( 'slug' => get_template(), 'fields' => array( 'sections' => false, 'tags' => false ) ) );
+		$api                  = themes_api( 'theme_information', array( 'slug' => get_stylesheet(), 'fields' => array( 'sections' => false, 'tags' => false ) ) );
 
 		// Check .org
 		if ( $api && ! is_wp_error( $api ) ) {
@@ -660,11 +661,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$outdated_templates = false;
 
 			foreach ( $template_paths as $plugin_name => $template_path ) {
-				$scanned_files[ $plugin_name ] = WC_Admin_Status::scan_template_files( $template_path );
-			}
 
-			foreach ( $scanned_files as $plugin_name => $files ) {
-				foreach ( $files as $file ) {
+				$scanned_files = WC_Admin_Status::scan_template_files( $template_path );
+
+				foreach ( $scanned_files as $file ) {
 					if ( file_exists( get_stylesheet_directory() . '/' . $file ) ) {
 						$theme_file = get_stylesheet_directory() . '/' . $file;
 					} elseif ( file_exists( get_stylesheet_directory() . '/woocommerce/' . $file ) ) {
@@ -678,7 +678,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					}
 
 					if ( ! empty( $theme_file ) ) {
-						$core_version  = WC_Admin_Status::get_file_version( WC()->plugin_path() . '/templates/' . $file );
+						$core_version  = WC_Admin_Status::get_file_version( $template_path . $file );
 						$theme_version = WC_Admin_Status::get_file_version( $theme_file );
 
 						if ( $core_version && ( empty( $theme_version ) || version_compare( $theme_version, $core_version, '<' ) ) ) {
@@ -776,7 +776,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		try {
 			jQuery( '#debug-report' ).slideDown();
-			jQuery( '#debug-report textarea' ).val( report ).focus().select();
+			jQuery( '#debug-report' ).find( 'textarea' ).val( report ).focus().select();
 			jQuery( this ).fadeOut();
 			return false;
 		} catch( e ){
@@ -797,7 +797,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		$( document.body ).on( 'copy', '#copy-for-support', function( e ) {
 			e.clipboardData.clearData();
-			e.clipboardData.setData( 'text/plain', $( '#debug-report textarea' ).val() );
+			e.clipboardData.setData( 'text/plain', $( '#debug-report' ).find( 'textarea' ).val() );
 			e.preventDefault();
 		});
 
