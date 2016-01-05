@@ -1459,7 +1459,7 @@ class wpdb {
 		 * $new_link parameter exists for mysqli_* functions.
 		 */
 		$new_link = defined( 'MYSQL_NEW_LINK' ) ? MYSQL_NEW_LINK : true;
-		$client_flags = defined( 'MYSQL_CLIENT_FLAGS' ) ? MYSQL_CLIENT_FLAGS : MYSQLI_CLIENT_SSL;
+		$client_flags = defined( 'MYSQL_CLIENT_FLAGS' ) ? MYSQL_CLIENT_FLAGS : 0;
 
 		if ( $this->use_mysqli ) {
 			$this->dbh = mysqli_init();
