@@ -10,6 +10,10 @@
  * @version  2.3.0
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 /**
  * Main function for returning products, uses the WC_Product_Factory class.
  *
@@ -311,8 +315,9 @@ function wc_get_formatted_variation( $variation, $flat = false ) {
 			// If this is a term slug, get the term's nice name
 			if ( taxonomy_exists( esc_attr( str_replace( 'attribute_', '', $name ) ) ) ) {
 				$term = get_term_by( 'slug', $value, esc_attr( str_replace( 'attribute_', '', $name ) ) );
-				if ( ! is_wp_error( $term ) && $term->name )
+				if ( ! is_wp_error( $term ) && ! empty( $term->name ) ) {
 					$value = $term->name;
+				}
 			} else {
 				$value = ucwords( str_replace( '-', ' ', $value ) );
 			}
@@ -517,7 +522,7 @@ function wc_get_product_types() {
  *
  * @since 2.2
  * @param int $product_id
- * @param string $sku
+ * @param string $sku Will be slashed to work around https://core.trac.wordpress.org/ticket/27421
  * @return bool
  */
 function wc_product_has_unique_sku( $product_id, $sku ) {
@@ -531,7 +536,7 @@ function wc_product_has_unique_sku( $product_id, $sku ) {
 		AND $wpdb->posts.post_status = 'publish'
 		AND $wpdb->postmeta.meta_key = '_sku' AND $wpdb->postmeta.meta_value = '%s'
 		AND $wpdb->postmeta.post_id <> %d LIMIT 1
-	 ", $sku, $product_id ) );
+	 ", wp_slash( $sku ), $product_id ) );
 
 	if ( apply_filters( 'wc_product_has_unique_sku', $sku_found, $product_id, $sku ) ) {
 		return false;
