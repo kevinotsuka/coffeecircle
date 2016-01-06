@@ -53,7 +53,7 @@ a#roaster8 {
     background-image: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/glitchbanner-1.jpg);
 }
 
-a#roaster9, a#roaster7, a#roaster13 {
+a#roaster9, a#roaster7, a#roaster8 {
 	display: block;
     width: 400px;
     height: 300px;
@@ -66,7 +66,7 @@ a#roaster9, a#roaster7, a#roaster13 {
    -webkit-transition: opacity .25s ease-in-out;
 }
 
- a#roaster13:hover,  a#roaster11:hover,  a#roaster9:hover {
+ a#roaster7:hover,  a#roaster8:hover,  a#roaster9:hover {
       opacity: 0.5;
       }
 
