@@ -1,10 +1,10 @@
 === Simple Membership ===
 Contributors: smp7, wp.insider, amijanina
 Donate link: https://simple-membership-plugin.com/
-Tags: member, members, members only, membership, memberships, register, WordPress membership plugin, content, content protection, paypal, restrict, restrict access, Restrict content, admin, access control, subscription, teaser, protection, profile, login, login page,
+Tags: member, members, members only, membership, memberships, register, WordPress membership plugin, content, content protection, paypal, restrict, restrict access, Restrict content, admin, access control, subscription, teaser, protection, profile, login, login page, bbpress,
 Requires at least: 3.3
-Tested up to: 4.3
-Stable tag: 3.0.3
+Tested up to: 4.4
+Stable tag: 3.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,11 +84,16 @@ The following language translations are already available:
 * Turkish
 * Russian
 * Dutch (Netherlands)
+* Dutch (Belgium)
 * Romanian
 * Danish
 * Lithuanian
 * Serbian
 * Japanese
+* Greek
+* Latvian
+* Indonesian
+* Hebrew
 
 You can translate the plugin using the language [translation documentation](https://simple-membership-plugin.com/translate-simple-membership-plugin/).
 
@@ -109,6 +114,70 @@ Please visit the memberhsip plugin page to view screenshots:
 https://simple-membership-plugin.com/
 
 == Changelog ==
+
+= 3.1.5 =
+- Added a new shortcode [swpm_show_expiry_date] to show the logged-in member's expiry details.
+- The search feature in the members menu will search the company name, city, state, country fields also.
+- The subscription profile ID (if any) for subscription payment is now shown in the "payments" interface of the plugin.
+- Added new filter hook so additional fields can be added to the payment button form (example: specify country or language code).
+- Updated the language POT file.
+
+= 3.1.4 =
+- Added an option in the "Payments" menu to link a payment to the corresponding membership profile (when applicable).
+- Fixed an issue with the subscriber ID not saving with the member profile (for PayPal subscription payments).
+- Added Hebrew language translation file. The translation was submitted by Merom Harpaz.
+
+= 3.1.3 =
+- Added Indonesian language translation file. The translation was submitted by Hermanudin.
+- Removed a couple of "notice" warnings from the installer.
+- Added option to bulk change members account status.
+- Updated the CSS class for postbox h3 elements.
+- The member search feature (in the admin side) can now search the list based on email address.
+
+= 3.1.2 =
+- Added more sortable columns in the members menu.
+- Adjusted the CSS for the registration and edit profile forms so they render better in small screen devices.
+- Changed the "User name" string to "Username"
+
+= 3.1.1 =
+- Fix for some special characters in the email not getting decoded correctly.
+- Updated the membership upgrade email header to use the "from email address" value from the email settings.
+
+= 3.1.0 =
+- Fixed an email validation issue for when the plugin is used with the form builder addon.
+
+= 3.0.9 =
+- Updated the Spanish language translation file.
+- Updated the POT file for language translation.
+- Added Dutch (Belgium) language translation file. The translation was submitted by Johan Calu.
+- Fixed an email validation issue.
+
+= 3.0.8 =
+- Added Latvian language translation file. The translation was submitted by Uldis Kalnins.
+- Updated the POT file for language translation.
+- Added a placeholder get_real_ip_addr() function for backwards compatibility.
+
+= 3.0.7 =
+- Fixed a typo in the password reset message.
+- Removed the get_real_ip_addr() function (using get_user_ip_address() from the "SwpmUtils" class).
+- Simplified the message class interaction.
+- Added CSS classes to the registration, edit profile and login submit buttons.
+- Added confirmation in the member's menu bulk operation function.
+- Fixed the bulk delete and delete functionality in the members list menu.
+- Fixed the category protection confirmation message.
+- Added Greek language translation file. The translation was submitted by Christos Papafilopoulos.
+
+= 3.0.6 =
+- Corrected the Danish language file name.
+- Fixed an issue with the profile update success message sticking.
+
+= 3.0.5 =
+- Added a fix to prevent an error from showing when a member record is edited from the admin side.
+
+= 3.0.4 =
+- Added a new utility function so a member's particular info can be retrieved using this function.
+- Added extra guard to prevent the following error "Call to member function get () on a non object".
+- Updated the langguage POT file.
 
 = 3.0.3 =
 - Increased the database character limit size of the user_name field.

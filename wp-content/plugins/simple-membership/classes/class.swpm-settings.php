@@ -18,8 +18,8 @@ class SwpmSettings {
             $tab = filter_input(INPUT_GET, 'tab');
             $tab = empty($tab) ? filter_input(INPUT_POST, 'tab') : $tab;
             $this->current_tab = empty($tab) ? 1 : $tab;
-            $this->tabs = array(1 => 'General Settings', 2 => 'Payment Settings',
-                3 => 'Email Settings', 4 => 'Tools', 5 => 'Advanced Settings', 6 => 'Addons Settings');
+            $this->tabs = array(1 => SwpmUtils::_('General Settings'), 2 => SwpmUtils::_('Payment Settings'),
+                3 => SwpmUtils::_('Email Settings'), 4 => SwpmUtils::_('Tools'), 5 => SwpmUtils::_('Advanced Settings'), 6 => SwpmUtils::_('Addons Settings'));
             add_action('swpm-draw-tab', array(&$this, 'draw_tabs'));
             $method = 'tab_' . $this->current_tab;
             if (method_exists($this, $method)) {
@@ -92,8 +92,13 @@ class SwpmSettings {
     }
 
     private function tab_3() {
+        //Show settings updated message when it is updated
+        if (isset($_REQUEST['settings-updated'])) {
+            echo '<div id="message" class="updated fade"><p>' . SwpmUtils::_('Settings updated!') . '</p></div>';
+        }
+        
         register_setting('swpm-settings-tab-3', 'swpm-settings', array(&$this, 'sanitize_tab_3'));
-
+        
         add_settings_section('email-misc-settings', SwpmUtils::_('Email Misc. Settings'), array(&$this, 'email_misc_settings_callback'), 'simple_wp_membership_settings');
         add_settings_field('email-misc-from', SwpmUtils::_('From Email Address'), array(&$this, 'textfield_callback'), 'simple_wp_membership_settings', 'email-misc-settings', array('item' => 'email-from',
             'message' => 'This value will be used as the sender\'s address for the emails. Example value: Your Name &lt;sales@your-domain.com&gt;'));
@@ -110,9 +115,9 @@ class SwpmSettings {
         add_settings_field('reg-complete-mail-body', SwpmUtils::_('Email Body'), array(&$this, 'textarea_callback'), 'simple_wp_membership_settings', 'reg-email-settings', array('item' => 'reg-complete-mail-body',
             'message' => ''));
         add_settings_field('enable-admin-notification-after-reg', SwpmUtils::_('Send Notification to Admin'), array(&$this, 'checkbox_callback'), 'simple_wp_membership_settings', 'reg-email-settings', array('item' => 'enable-admin-notification-after-reg',
-            'message' => 'Enable this option if you want the admin to receive a notification when a member registers.'));
+            'message' => SwpmUtils::_('Enable this option if you want the admin to receive a notification when a member registers.')));
         add_settings_field('admin-notification-email', SwpmUtils::_('Admin Email Address'), array(&$this, 'textfield_callback'), 'simple_wp_membership_settings', 'reg-email-settings', array('item' => 'admin-notification-email',
-            'message' => 'Enter the email address where you want the admin notification email to be sent to.'));
+            'message' => SwpmUtils::_('Enter the email address where you want the admin notification email to be sent to.')));
         add_settings_field('enable-notification-after-manual-user-add', SwpmUtils::_('Send Email to Member When Added via Admin Dashboard'), array(&$this, 'checkbox_callback'), 'simple_wp_membership_settings', 'reg-email-settings', array('item' => 'enable-notification-after-manual-user-add',
             'message' => ''));
 
@@ -135,6 +140,11 @@ class SwpmSettings {
     }
 
     private function tab_5() {
+        //Show settings updated message when it is updated
+        if (isset($_REQUEST['settings-updated'])) {
+            echo '<div id="message" class="updated fade"><p>' . SwpmUtils::_('Settings updated!') . '</p></div>';
+        }
+        
         register_setting('swpm-settings-tab-5', 'swpm-settings', array(&$this, 'sanitize_tab_5'));
 
         add_settings_section('advanced-settings', SwpmUtils::_('Advanced Settings'), array(&$this, 'advanced_settings_callback'), 'simple_wp_membership_settings');

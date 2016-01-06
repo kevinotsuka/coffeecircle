@@ -51,10 +51,10 @@ class SwpmAdminRegistration extends SwpmRegistration {
             if (!empty($send_notification)) {
                 $this->send_reg_email();
             }
-            $message = array('succeeded' => true, 'message' => SwpmUtils::_('Registration Successful.'));
+            $message = array('succeeded' => true, 'message' => '<p>' . SwpmUtils::_('Member record added successfully.') . '</p>');
             SwpmTransfer::get_instance()->set('status', $message);
             wp_redirect('admin.php?page=simple_wp_membership');
-            return;
+            exit(0);
         }
         $message = array('succeeded' => false, 'message' => SwpmUtils::_('Please correct the following:'), 'extra' => $form->get_errors());
         SwpmTransfer::get_instance()->set('status', $message);
@@ -75,8 +75,13 @@ class SwpmAdminRegistration extends SwpmRegistration {
             SwpmUtils::update_wp_user($user_name, $member);
             unset($member['plain_password']);
             $wpdb->update($wpdb->prefix . "swpm_members_tbl", $member, array('member_id' => $id));
-            $message = array('succeeded' => true, 'message' => 'Updated Successfully.');
-            do_action('swpm_admin_edit_custom_fields', $member + array('member_id' => $id));
+            $message = array('succeeded' => true, 'message' => '<p>Member profile updated successfully.</p>');
+            $error = apply_filters('swpm_admin_edit_custom_fields', array(), $member + array('member_id' => $id));
+            if (!empty($error)) {
+                $message = array('succeeded' => false, 'message' => SwpmUtils::_('Please correct the following:'), 'extra' => $error);
+                SwpmTransfer::get_instance()->set('status', $message);    
+                return;
+            }
             SwpmTransfer::get_instance()->set('status', $message);
             $send_notification = filter_input(INPUT_POST, 'account_status_change');
             if (!empty($send_notification)) {
@@ -91,10 +96,11 @@ class SwpmAdminRegistration extends SwpmRegistration {
                 $member['password'] = empty($plain_password) ? SwpmUtils::_("Your current password") : $plain_password;
                 $values = array_values($member);
                 $keys = array_map('swpm_enclose_var', array_keys($member));
-                $body = str_replace($keys, $values, $body);
+                $body = html_entity_decode(str_replace($keys, $values, $body));
                 wp_mail($email_address, $subject, $body, $headers);
             }
             wp_redirect('admin.php?page=simple_wp_membership');
+            exit(0);
         }
         $message = array('succeeded' => false, 'message' => SwpmUtils::_('Please correct the following:'), 'extra' => $form->get_errors());
         SwpmTransfer::get_instance()->set('status', $message);

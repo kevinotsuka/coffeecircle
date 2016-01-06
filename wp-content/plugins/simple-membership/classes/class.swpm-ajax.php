@@ -12,10 +12,10 @@ class SwpmAjax {
         $member_id = filter_input(INPUT_GET, 'member_id');
         if (!is_email($field_value)){
             echo '[ "' . $field_id .  '",false, "'.SwpmUtils::_('Invalid Email Address').'" ]' ;
-            exit;            
+            exit;
         }
         $table = $wpdb->prefix . "swpm_members_tbl";
-        $query = $wpdb->prepare("SELECT member_id FROM $table WHERE email = %s", $field_value);
+        $query = $wpdb->prepare("SELECT member_id FROM $table WHERE email = %s AND user_name != ''", $field_value);
         $db_id = $wpdb->get_var($query) ;
         $exists = ($db_id > 0) && $db_id != $member_id;
         echo '[ "' . $field_id . (($exists) ? '",false, "&chi;&nbsp;'.SwpmUtils::_('Aready taken').'"]' : '",true, "&radic;&nbsp;Available"]');
@@ -23,9 +23,13 @@ class SwpmAjax {
     }
 
     public static function validate_user_name_ajax() {
-        global $wpdb;
+        global $wpdb;        
         $field_value = filter_input(INPUT_GET, 'fieldValue');
         $field_id = filter_input(INPUT_GET, 'fieldId');
+        if (!SwpmMemberUtils::is_valid_user_name($field_value)){
+            echo '[ "' . $field_id . '",false,"&chi;&nbsp;'. SwpmUtils::_('Name contains invalid character'). '"]';
+            exit;
+        }
         $table = $wpdb->prefix . "swpm_members_tbl";
         $query = $wpdb->prepare("SELECT COUNT(*) FROM $table WHERE user_name = %s", $field_value);
         $exists = $wpdb->get_var($query) > 0;
