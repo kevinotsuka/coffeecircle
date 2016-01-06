@@ -10,9 +10,10 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
+global $nm_theme_options;
 
 /* Function: Set up-sells product limit */
 function nm_woocommerce_output_upsells() { 
@@ -52,6 +53,8 @@ if ( isset( $_GET['nobg'] ) ) {
 	$background_style = ' style="background-color:#fff;"';
 }
 
+$summary_column_size = ( isset( $nm_theme_options['product_image_column_size'] ) ) ? 10 - intval( $nm_theme_options['product_image_column_size'] ) : '4';
+
 ?>
 
 <?php
@@ -78,7 +81,7 @@ if ( isset( $_GET['nobg'] ) ) {
 							'delimiter'   	=> '<span class="delimiter">/</span>',
 							'wrap_before'	=> '<nav id="nm-breadcrumb" class="woocommerce-breadcrumb" ' . ( is_single() ? 'itemprop="breadcrumb"' : '' ) . '>',
 							'wrap_after'	=> '</nav>',
-							'home'			=> _x( 'Home', 'breadcrumb', 'woocommerce' )
+							'home'			=> _x( 'Shop', 'breadcrumb', 'woocommerce' )
 						) );
 					?>
                 </div>
@@ -107,15 +110,15 @@ if ( isset( $_GET['nobg'] ) ) {
                      */
                     do_action( 'woocommerce_before_single_product_summary' );
                 ?>
-                            
-                <div class="nm-product-summary-col col-lg-4 col-md-10 col-xs-12">
+				
+                <div class="nm-product-summary-col col-lg-<?php echo esc_attr( $summary_column_size ); ?> col-md-10 col-xs-12">
                     <div id="nm-product-summary" class="product-summary">
 						<div class="nm-row">
                             <div class="nm-product-summary-inner-col col-lg-12 col-xs-6">
                                 <div class="nm-product-summary-title">
 									<?php
                                         woocommerce_template_single_title();
-                                        woocommerce_template_single_price();
+                                        woocommerce_template_single_price(); 
                                     ?>
                                 </div>
                             </div>
@@ -160,7 +163,7 @@ if ( isset( $_GET['nobg'] ) ) {
 		 * @hooked woocommerce_upsell_display - 10
          * @hooked woocommerce_output_related_products - 15
          */
-        do_action( 'woocommerce_after_single_product_tabs' );
+		do_action( 'woocommerce_after_single_product_tabs' );
     ?>
 
 	<meta itemprop="url" content="<?php the_permalink(); ?>" />
