@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 /**
  * WooCommerce coupons
  *
@@ -266,7 +271,7 @@ class WC_Coupon {
 	 * @param string $used_by Either user ID or billing email
 	 */
 	public function dcr_usage_count( $used_by = '' ) {
-		if ( $this->id ) {
+		if ( $this->id && $this->usage_count > 0 ) {
 			global $wpdb;
 			$this->usage_count--;
 			update_post_meta( $this->id, 'usage_count', $this->usage_count );

@@ -19,12 +19,12 @@ if (!isset($_REQUEST['swpm_button_type_selected'])) {
     //Button type hasn't been selected. Show the selection option.
     ?>
     <div class="postbox">
-        <h3><label for="title"><?php echo SwpmUtils::_('Select Payment Button Type'); ?></label></h3>
+        <h3 class="hndle"><label for="title"><?php echo SwpmUtils::_('Select Payment Button Type'); ?></label></h3>
         <div class="inside">
             <form action="" method="post">
-                <input type="radio" name="button_type" value="pp_buy_now" checked>PayPal Buy Now
+                <input type="radio" name="button_type" value="pp_buy_now" checked><?php SwpmUtils::e('PayPal Buy Now'); ?>
                 <br />
-                <input type="radio" name="button_type" value="pp_subscription">PayPal Subscription
+                <input type="radio" name="button_type" value="pp_subscription"><?php SwpmUtils::e('PayPal Subscription'); ?>
                 <br />
                 <?php
                 apply_filters('swpm_new_button_select_button_type', '');

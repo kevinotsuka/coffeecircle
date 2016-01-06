@@ -1,6 +1,8 @@
 <?php
 
-class SwpmMembers extends WP_List_Table {
+include_once(SIMPLE_WP_MEMBERSHIP_PATH . 'classes/common/class.swpm-list-table.php');
+
+class SwpmMembers extends SWPM_List_Table {
 
     function __construct() {
         parent::__construct(array(
@@ -14,7 +16,7 @@ class SwpmMembers extends WP_List_Table {
         return array(
             'cb' => '<input type="checkbox" />'
             , 'member_id' => SwpmUtils::_('ID')
-            , 'user_name' => SwpmUtils::_('User Name')
+            , 'user_name' => SwpmUtils::_('Username')
             , 'first_name' => SwpmUtils::_('First Name')
             , 'last_name' => SwpmUtils::_('Last Name')
             , 'email' => SwpmUtils::_('Email')
@@ -26,14 +28,22 @@ class SwpmMembers extends WP_List_Table {
 
     function get_sortable_columns() {
         return array(
-            'member_id' => array('member_id', true),
-            'user_name' => array('user_name', true)
+            'member_id' => array('member_id', true),//True means already sorted
+            'user_name' => array('user_name', false),
+            'email' => array('email', false),
+            'alias' => array('alias', false),
+            'account_state' => array('account_state', false),
         );
     }
 
     function get_bulk_actions() {
         $actions = array(
-            'bulk_delete' => SwpmUtils::_('Delete')
+            'bulk_delete' => SwpmUtils::_('Delete'),
+            'bulk_active' => SwpmUtils::_('Set Status to Active'),
+            /*'bulk_active_notify' => SwpmUtils::_('Set Status to Active and Notify'),*/
+            'bulk_inactive' => SwpmUtils::_('Set Status to Inactive'),
+            'bulk_pending' => SwpmUtils::_('Set Status to Pending'),
+            'bulk_expired' => SwpmUtils::_('Set Status to Expired'),            
         );
         return $actions;
     }
@@ -69,7 +79,12 @@ class SwpmMembers extends WP_List_Table {
         if (!empty($s)) {
             $query .= " WHERE  user_name LIKE '%" . strip_tags($s) . "%' "
                     . " OR first_name LIKE '%" . strip_tags($s) . "%' "
-                    . " OR last_name LIKE '%" . strip_tags($s) . "%' ";
+                    . " OR last_name LIKE '%" . strip_tags($s) . "%' "
+                    . " OR email LIKE '%" . strip_tags($s) . "%' "
+                    . " OR address_city LIKE '%" . strip_tags($s) . "%' "
+                    . " OR address_state LIKE '%" . strip_tags($s) . "%' "
+                    . " OR country LIKE '%" . strip_tags($s) . "%' "
+                    . " OR company_name LIKE '%" . strip_tags($s) . "%' ";
         }
         $orderby = filter_input(INPUT_GET, 'orderby');
         $orderby = empty($orderby) ? 'member_id' : $orderby;
@@ -111,8 +126,9 @@ class SwpmMembers extends WP_List_Table {
     }
 
     function process_form_request() {
-        if (isset($_REQUEST['member_id']))
+        if (isset($_REQUEST['member_id'])){
             return $this->edit(absint($_REQUEST['member_id']));
+        }
         return $this->add();
     }
 
@@ -144,7 +160,9 @@ class SwpmMembers extends WP_List_Table {
         if (isset($_POST["editswpmuser"])) {
             $_POST['user_name'] = $member['user_name'];
             $_POST['email'] = $member['email'];
-            $member = $_POST;
+            foreach($_POST as $key=>$value){
+                $member[$key] = $value;
+            }
         }
         extract($member, EXTR_SKIP);
         $query = "SELECT * FROM " . $wpdb->prefix . "swpm_membership_tbl WHERE  id !=1 ";
@@ -154,20 +172,49 @@ class SwpmMembers extends WP_List_Table {
     }
 
     function process_bulk_action() {
-        //Detect when a bulk action is being triggered... //print_r($_REQUEST);
-        if ('bulk_delete' === $this->current_action()) {
-            $records_to_delete = $_REQUEST['members'];
-            if (empty($records_to_delete)) {
+        //Detect when a bulk action is being triggered... 
+        $members = isset($_REQUEST['members'])? $_REQUEST['members']: array();
+        $current_action = $this->current_action();
+        if ('bulk_delete' === $current_action) {            
+            if (empty($members)) {
                 echo '<div id="message" class="updated fade"><p>Error! You need to select multiple records to perform a bulk action!</p></div>';
                 return;
             }
-            foreach ($records_to_delete as $record_id) {
+            foreach ($members as $record_id) {
                 SwpmMembers::delete_user_by_id($record_id);
             }
             echo '<div id="message" class="updated fade"><p>Selected records deleted successfully!</p></div>';
         }
+        else if ('bulk_active' === $current_action){
+            $this->bulk_set_status($members, 'active');
+        }
+        else if ('bulk_active_notify' == $current_action){
+            $this->bulk_set_status($members, 'active', true);
+        }
+        else if ('bulk_inactive' == $current_action){
+            $this->bulk_set_status($members, 'inactive');
+        }
+        else if ('bulk_pending' == $current_action){
+            $this->bulk_set_status($members, 'pending');
+        }
+        else if ('bulk_expired' == $current_action){
+            $this->bulk_set_status($members, 'expired');
+        }        
     }
-
+    
+    function bulk_set_status($members, $status, $notify = false ){
+        $ids = implode(',', array_map('absint', $members));
+        if (empty($ids)) {return;}
+        global $wpdb;   
+        $query = "UPDATE " . $wpdb->prefix . "swpm_members_tbl " .
+                " SET account_state = '" . $status . "' WHERE member_id in (" . $ids . ")";
+        $wpdb->query($query);        
+        
+        if ($notify){
+            // todo: add notification
+        }
+    }
+    
     function delete() {
         if (isset($_REQUEST['member_id'])) {
             $id = absint($_REQUEST['member_id']);

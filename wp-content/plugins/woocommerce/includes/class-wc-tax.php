@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 /**
  * Performs tax calculations and loads tax rates.
  *
@@ -239,9 +244,11 @@ class WC_Tax {
 		$rates          = self::find_rates( $args );
 		$shipping_rates = array();
 
-		foreach ( $rates as $key => $rate ) {
-			if ( 'yes' === $rate['shipping'] ) {
-				$shipping_rates[ $key ] = $rate;
+		if ( is_array( $rates ) ) {
+			foreach ( $rates as $key => $rate ) {
+				if ( 'yes' === $rate['shipping'] ) {
+					$shipping_rates[ $key ] = $rate;
+				}
 			}
 		}
 
