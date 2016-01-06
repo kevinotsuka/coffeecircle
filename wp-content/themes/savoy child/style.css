@@ -1,26 +1,18 @@
 /*
 	Theme Name: Savoy Child
 	Theme URI: http://themeforest.net/item/savoy-minimalist-ajax-woocommerce-theme/12537825
-	Description: Savoy - Modern AJAX enabled WooCommerce theme.
-	Version: 1.2.1
-	License:
-	License URI:
-	Author: NordicMade
-	Author URI: http://www.nordicmade.com
-	Tags: brown, black, gray, orange, tan, white, yellow, light, fluid-layout, responsive-layout, one-column, two-columns, custom-background, custom-colors, custom-header, custom-menu, theme-options, threaded-comments, translation-ready
-	Text Domain: nm-framework
-	Domain Path: /languages/
-	Template: savoy
+  Description:  Savoy child theme
+  Author:       NordicMade
+  Author URI:   http://www.nordicmade.com
+  Template:     savoy
+  Version:      0.1
 
 */
 
-@import url("../savoy/style.css");
+/*@import url("../savoy/style.css");*/
 
 /* Child CSS
 --------------------------------------------------------------- */
-
-
-
 
 
 a#roaster9 {
