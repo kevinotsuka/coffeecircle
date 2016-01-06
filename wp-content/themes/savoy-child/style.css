@@ -79,3 +79,18 @@ a#roaster9, a#roaster11, a#roaster13 {
     -webkit-column-count: 3;
     -webkit-column-gap: 20px;
 }
+
+/* Summary: Quantity */
+.product-summary .nm-quantity-wrap {
+	position: relative;
+	width: 100%;
+	text-align: center;
+	border: 1px solid #dadada;
+	border-bottom: 0 none;	
+	overflow: hidden;
+	padding-top: 5px;
+}
+
+.product-summary .nm-quantity-wrap label {
+	font-weight: bold;
+}
