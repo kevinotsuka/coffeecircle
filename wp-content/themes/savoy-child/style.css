@@ -1,5 +1,5 @@
 /*
-	Theme Name:   Savoy - ABC Edition
+	Theme Name:   Savoy Child Theme
 	Theme URI:    http://themeforest.net
 	Description:  Savoy child theme
 	Author:       NordicMade
@@ -41,200 +41,41 @@ hr {
     display: block;
     margin: 6px auto 12px auto;
 }
-
-/*kevin styles
---------------------------------------------------------------- */
-
-.woocommerce-info {
-	display: none;
+a#roaster9 {
+   background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/streamerbanner.jpg);
 }
 
-.nm-quantity-wrap .quantity,
-.nm-menu-login {
-	display: none;
+a#roaster11 {
+    background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/glitchbanner.jpg);
 }
 
-/*adding styles from ariva*/
-.ts-service-slide .item-service-slide{
-	text-align: center;
-	background: #ffffff;
-	padding: 40px;
-	min-height: 413px;
-	margin: 0 15px 25px 15px;
-	
-}
-.ts-service-slide  .icon{
-	font-size: 35px;
-	color: #000000;
-	margin-top: 20px;
-}
-.ts-service-slide  h3{
-	font-size: 12px;
-	letter-spacing: 2.5px;
-	text-transform: uppercase;
-	color: #000;
-	margin-bottom: 40px;
-	margin-top: 0;
-}
-.ts-service-slide hr{
-	width: 30px;
-	height: 3px;
-	background: #000000;
-	margin-top: 15px;
-	border: none;
-}
-.ts-service-slide .item-service-slide:hover{
-	background: #000000;
-	color: #ffffff;
-	-webkit-transition: all 0.5s ease 0s;
-	-o-transition: all 0.5s ease 0s;
-	transition: all 0.5s ease 0s;
-}
-.ts-service-slide .item-service-slide:hover h3, .ts-service-slide .item-service-slide:hover .icon{
-	color: #ffffff;
-}
-.ts-service-slide .item-service-slide:hover hr{
-	background: #ffffff;
+a#roaster13 {
+    background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/takamurabanner.jpg);
 }
 
-#roaster-0 {
-	background:url(https://abccoffee.co/wp-content/uploads/2015/05/ABCmark-A2x.png) no-repeat 50% 0;
-	background-size:200px 200px;
+a#roaster9, a#roaster11, a#roaster13 {
+	display: block;
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    text-indent: -9999px;
+    background-size: 100%;
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
 }
 
-#roaster-1 {
-	background:url(https://abccoffee.co/wp-content/uploads/2015/05/ABCmark-B2x.png) no-repeat 50% 0;
-	background-size:200px 200px;
-}
-
-#roaster-2 {
-	background:url(https://abccoffee.co/wp-content/uploads/2015/05/ABCmark-C2x.png) no-repeat 50% 0;	
-	background-size:200px 200px;
-}
+ a#roaster13:hover,  a#roaster11:hover,  a#roaster9:hover {
+      opacity: 0.5;
+      }
 
 
-.monthly-roaster-slide:hover #roaster-0 {
-	background:url(https://abccoffee.co/wp-content/uploads/2015/05/ABCmark-Ar2x.png) no-repeat 50% 0;
-	background-size:200px 200px;
-	color: #ffffff;
-}
-
-.monthly-roaster-slide:hover #roaster-1 {
-	background:url(https://abccoffee.co/wp-content/uploads/2015/05/ABCmark-Br2x.png) no-repeat 50% 0;
-	background-size:200px 200px;
-	color: #ffffff;
-}
-
-.monthly-roaster-slide:hover #roaster-2 {
-	background:url(https://abccoffee.co/wp-content/uploads/2015/05/ABCmark-Cr2x.png) no-repeat 50% 0;	
-	background-size:200px 200px;
-	color: #ffffff;
-}
-
-.monthly-roaster-slide {
-	color:#000;
-}
-
-.monthly-roaster-slide h2 {
-	margin-top:0;
-	padding-top: 220px;
-	height: 350px;
-	font-size:26px!important;
-	color:#000;
-	text-transform: uppercase;
-}
-
-.monthly-roaster-slide .roaster-coffee {
-	text-transform: uppercase;
-	line-height: 18px;
-	height:40px;
-	bottom: 0px;
-	text-align:center;
-}
-
-
-
-/* Banner Style Hacks - ABC Coffee
---------------------------------------------------------------- */
-.slick-slider .nm-banner img.banner-logo {
-	height:60px;
-	margin-bottom:14px;
-}
-
-.nm-banner-text h3 {
-	color:#000;
-}
-
-/* Roaster View - ABC Coffee
---------------------------------------------------------------- */
-
-/* Image */
-.nm-team-member-image {
-	position: relative;
-	text-align: center;
-	margin-bottom:0px;
-}
-
-.wpb_content_element .wpb_tabs_nav li {
-	background: none;
-}
-
-
-.nm-team-member-overlay {
-    background:rgba(0,0,0,0.85);
-}
-.nm-team-member-social-icons li {
-    text-transform:uppercase;
-}
-
-.nm-team-member-social-icons li h2 {
-    color:#fff;
-    font-size:16px;
-}
-
-.nm-team-member-social-icons li h3{
-    color:#fff;
-    font-size:12px;
-}
-
-.nm-team-member-social-icons li hr {
-    border-color:#fff;
-}
-
-.nm-team-member-content {
-    text-align: left;
-    padding-top: 10px;
-    display:none;
-}
-
-.nm-team-member-content h2 {
-    font-size: 16px;
-}
-
-/* Hiding Qty */
-.product-summary .single_variation_wrap .nm-quantity-wrap {
-    display:none;
-}
-
-/* Hiding price */
-.from {
-	display: none;
-}
-
-/* Header Hero Styling */
-.nm-banner-text h2.large {
-    font-size: 56px;
-    font-family: roboto condensed;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-/*hiding blog breadcrumbs for now - nice to bring back later */
-.nm-blog-categories-list {
-	display: none;
-}
-
-/*link style change*/
-p a {
- color: #48BA87 !important;
+.nm-shop-categories {
+	column-count: 3;
+    column-gap: 20px;
+    -moz-column-count: 3;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 20px;
 }
