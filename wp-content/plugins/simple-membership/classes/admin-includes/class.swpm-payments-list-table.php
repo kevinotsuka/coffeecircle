@@ -32,6 +32,32 @@ class SWPMPaymentsListTable extends SWPM_List_Table {
         return $item['id'] . $this->row_actions($actions);
     }
 
+    function column_member_profile($item)
+    {
+        global $wpdb;
+        $members_table_name = $wpdb->prefix . "swpm_members_tbl";
+        $member_id = $item['member_id'];
+        $subscr_id = $item['subscr_id'];
+        $column_value = '';
+
+        if(empty($member_id)){//Lets try to get the member id using unique reference
+            $resultset = $wpdb->get_row($wpdb->prepare("SELECT * FROM $members_table_name where subscr_id=%s", $subscr_id), OBJECT);
+            if ($resultset) {
+                //Found a record
+                $member_id = $resultset->member_id;
+            }
+        }
+        
+        if(!empty($member_id)){
+            $profile_page = 'admin.php?page=simple_wp_membership&member_action=edit&member_id='.$member_id;
+            $column_value = '<a href="'.$profile_page.'">'.SwpmUtils::_('View Profile').'</a>';
+        }
+        else{
+            $column_value = '';
+        }
+        return $column_value;
+    }
+    
     function column_cb($item) {
         return sprintf(
                 '<input type="checkbox" name="%1$s[]" value="%2$s" />',
@@ -43,14 +69,16 @@ class SWPMPaymentsListTable extends SWPM_List_Table {
     function get_columns() {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'id' => 'Row ID',
-            'email' => 'Email Address',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
-            'txn_date' => 'Date',
-            'txn_id' => 'Transaction ID',
-            'payment_amount' => 'Amount',
-            'membership_level' => 'Membership Level'
+            'id' => SwpmUtils::_('Row ID'),
+            'email' => SwpmUtils::_('Email Address'),
+            'first_name' => SwpmUtils::_('First Name'),
+            'last_name' => SwpmUtils::_('Last Name'),
+            'member_profile' => SwpmUtils::_('Member Profile'),
+            'txn_date' => SwpmUtils::_('Date'),
+            'txn_id' => SwpmUtils::_('Transaction ID'),
+            'subscr_id' => SwpmUtils::_('Subscriber ID'),
+            'payment_amount' => SwpmUtils::_('Amount'),
+            'membership_level' => SwpmUtils::_('Membership Level')
         );
         return $columns;
     }
@@ -65,7 +93,7 @@ class SWPMPaymentsListTable extends SWPM_List_Table {
 
     function get_bulk_actions() {
         $actions = array(
-            'delete' => 'Delete'
+            'delete' => SwpmUtils::_('Delete')
         );
         return $actions;
     }

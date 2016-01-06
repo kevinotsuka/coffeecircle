@@ -99,7 +99,7 @@ class SwpmFrontRegistration extends SwpmRegistration {
         $member_info = $form->get_sanitized();
         $free_level = SwpmUtils::get_free_level();
         $account_status = SwpmSettings::get_instance()->get_value('default-account-status', 'active');
-        $member_info['last_accessed_from_ip'] = SwpmTransfer::get_real_ip_addr();
+        $member_info['last_accessed_from_ip'] = SwpmUtils::get_user_ip_address();
         $member_info['member_since'] = date("Y-m-d");
         $member_info['subscription_starts'] = date("Y-m-d");
         $member_info['account_state'] = $account_status;
@@ -197,7 +197,7 @@ class SwpmFrontRegistration extends SwpmRegistration {
                 ' WHERE email = %s';
         $user = $wpdb->get_row($wpdb->prepare($query, $email));
         if (empty($user)) {
-            $message = '<div class="swpm-reset-pw-error">' . SwpmUtils::_("No user not found with that email address.") . '</div>';
+            $message = '<div class="swpm-reset-pw-error">' . SwpmUtils::_("No user found with that email address.") . '</div>';
             $message .= '<div class="swpm-reset-pw-error-email">' . SwpmUtils::_("Email Address: ") . $email . '</div>';
             $message = array('succeeded' => false, 'message' => $message);
             SwpmTransfer::get_instance()->set('status', $message);
@@ -216,6 +216,7 @@ class SwpmFrontRegistration extends SwpmRegistration {
         $subject = $settings->get_value('reset-mail-subject');
         $search = array('{user_name}', '{first_name}', '{last_name}', '{password}');
         $replace = array($user->user_name, $user->first_name, $user->last_name, $password);
+        $body = html_entity_decode($body);
         $body = str_replace($search, $replace, $body);
         $from = $settings->get_value('email-from');
         $headers = "From: " . $from . "\r\n";
