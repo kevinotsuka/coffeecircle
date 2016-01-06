@@ -1,0 +1,55 @@
+/*
+	Theme Name: Savoy Child
+	Theme URI: http://themeforest.net/item/savoy-minimalist-ajax-woocommerce-theme/12537825
+  Description:  Savoy child theme
+  Author:       NordicMade
+  Author URI:   http://www.nordicmade.com
+  Template:     savoy
+  Version:      0.1
+
+*/
+
+/*@import url("../savoy/style.css");*/
+
+/* Child CSS
+--------------------------------------------------------------- */
+
+
+a#roaster9 {
+   background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/streamerbanner.jpg);
+}
+
+a#roaster11 {
+    background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/glitchbanner.jpg);
+}
+
+a#roaster13 {
+    background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/takamurabanner.jpg);
+}
+
+a#roaster9, a#roaster11, a#roaster13 {
+	display: block;
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    text-indent: -9999px;
+    background-size: 100%;
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+ a#roaster13:hover,  a#roaster11:hover,  a#roaster9:hover {
+      opacity: 0.5;
+      }
+
+
+.nm-shop-categories {
+	column-count: 3;
+    column-gap: 20px;
+    -moz-column-count: 3;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 20px;
+}
