@@ -11,7 +11,7 @@ class Sendgrid_Tools
    */
   public static function check_username_password( $username, $password )
   {
-    $url = 'https://sendgrid.com/api/profile.get.json?';
+    $url = 'https://api.sendgrid.com/api/profile.get.json?';
     $url .= "api_user=" . urlencode($username) . "&api_key=" . urlencode($password);
 
     $response = wp_remote_get( $url );
@@ -32,20 +32,99 @@ class Sendgrid_Tools
   }
 
   /**
+   * Check api_key
+   *
+   * @param   string  $api_key   sendgrid api_key
+   * @return  bool
+   */
+  public static function check_api_key( $api_key )
+  {
+    $url = 'https://api.sendgrid.com/api/mail.send.json';
+
+    $args = array(
+      'headers' => array(
+        'Authorization' => 'Bearer ' . $api_key )
+    );
+
+    $response = wp_remote_get( $url, $args );
+    
+    if ( ! is_array( $response ) or ! isset( $response['body'] ) ) {
+      return false;
+    }
+
+    $response = json_decode( $response['body'], true );
+
+    if ( isset( $response['errors'] ) and 
+      ( ( 'Authenticated user is not authorized to send mail' == $response['errors'][0] ) or
+      ( 'The provided authorization grant is invalid, expired, or revoked' == $response['errors'][0] ) ) ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Check template
+   *
+   * @param   string  $template   sendgrid template
+   * @return  bool
+   */
+  public static function check_template( $template )
+  {
+    $url = 'v3/templates/' . $template;
+
+    $parameters['api_user'] = Sendgrid_Tools::get_username();
+    $parameters['api_key']  = Sendgrid_Tools::get_password();
+    $parameters['apikey']   = Sendgrid_Tools::get_api_key();
+
+    $response = Sendgrid_Tools::curl_request( $url, $parameters );
+
+    if ( !$response ) 
+    {
+      return false;
+    }
+
+    $response = json_decode( $response, true );
+
+    if ( isset( $response['error'] ) )
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
    * Make cURL request to SendGrid API
    *
    * @param type $api
    * @param type $parameters
    * @return json
    */
-  public static function curl_request( $api = 'api/stats.get.json', $parameters = array() )
+  public static function curl_request( $api = 'v3/stats', $parameters = array() )
   {
-    $parameters['api_user'] = urlencode($parameters['api_user']);
-    $parameters['api_key'] = urlencode($parameters['api_key']);
-    $data = urldecode( http_build_query( $parameters ) );
-    $url = "https://sendgrid.com/$api?$data";
+    $args = array();
+    if ( ! $parameters['apikey'] ) {
+      $creds = base64_encode($parameters['api_user'] . ':' . $parameters['api_key']);
 
-    $response = wp_remote_get( $url );
+      $args = array(
+        'headers' => array(
+          'Authorization' => 'Basic ' . $creds 
+        )
+      );
+
+    } else {
+      $args = array(
+        'headers' => array(
+          'Authorization' => 'Bearer ' . $parameters['apikey'] 
+        )
+      );
+    }
+
+    $data = urldecode( http_build_query( $parameters ) );
+    $url = "https://api.sendgrid.com/$api?$data";
+
+    $response = wp_remote_get( $url, $args );
 
     if ( !is_array($response) or !isset( $response['body'] ) )
     {
@@ -84,6 +163,20 @@ class Sendgrid_Tools
   }
 
   /**
+   * Return api_key from the database or global variable
+   *
+   * @return string api key
+   */
+  public static function get_api_key()
+  {
+    if ( defined('SENDGRID_API_KEY') ) {
+      return SENDGRID_API_KEY;
+    } else {
+      return get_option('sendgrid_api_key');
+    }
+  }
+
+  /**
    * Return send method from the database or global variable
    *
    * @return string send_method
@@ -96,6 +189,40 @@ class Sendgrid_Tools
       return get_option('sendgrid_api');
     } else {
       return 'api';
+    }
+  }
+
+  /**
+   * Return port from the database or global variable
+   *
+   * @return string port
+   */
+  public static function get_port()
+  {
+    if ( defined('SENDGRID_PORT') ) {
+      return SENDGRID_PORT;
+    } else {
+      return get_option('sendgrid_port');
+    }
+  }
+
+  /**
+   * Return auth method from the database or global variable
+   *
+   * @return string auth_method
+   */
+  public static function get_auth_method()
+  {
+    if ( defined('SENDGRID_AUTH_METHOD') ) {
+      return SENDGRID_AUTH_METHOD;
+    } elseif ( Sendgrid_Tools::get_api_key() ) {
+      return 'apikey';
+    } elseif ( Sendgrid_Tools::get_username() and Sendgrid_Tools::get_password() and ! Sendgrid_Tools::get_api_key() ) {
+      return 'username';
+    } elseif ( get_option('sendgrid_auth_method') ) {
+      return get_option('sendgrid_auth_method');
+    } else {
+      return 'apikey';
     }
   }
 
@@ -169,5 +296,19 @@ class Sendgrid_Tools
     }
 
     return array();
+  }
+
+  /**
+   * Return template from the database or global variable
+   *
+   * @return string template
+   */
+  public static function get_template()
+  {
+    if ( defined('SENDGRID_TEMPLATE') ) {
+      return SENDGRID_TEMPLATE;
+    } else {
+      return get_option( 'sendgrid_template' );
+    }
   }
 }
