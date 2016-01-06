@@ -4309,7 +4309,7 @@ div.create-account span {
 	}
 }
 
-
+/*
 
 a#roaster9 {
    background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/streamerbanner.jpg);
@@ -4347,5 +4347,5 @@ a#roaster9, a#roaster11, a#roaster13 {
     -moz-column-count: 3;
     -moz-column-gap: 20px;
     -webkit-column-count: 3;
-    -webkit-column-gap: 20px;
+    -webkit-column-gap: 20px; */
 }
