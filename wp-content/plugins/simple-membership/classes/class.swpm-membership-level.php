@@ -6,13 +6,14 @@
  * @author nur
  */
 class SwpmMembershipLevel {
-    const NO_EXPIRY  = 0;
-    const DAYS       = 1;
-    const WEEKS      = 2; 
-    const MONTHS     = 3;
-    const YEARS      = 4;
+
+    const NO_EXPIRY = 0;
+    const DAYS = 1;
+    const WEEKS = 2;
+    const MONTHS = 3;
+    const YEARS = 4;
     const FIXED_DATE = 5;
-    
+
     private static $_instance = null;
 
     private function __construct() {
@@ -34,10 +35,10 @@ class SwpmMembershipLevel {
             $id = $wpdb->insert_id;
             $custom = apply_filters('swpm_admin_add_membership_level', array());
             $this->save_custom_fields($id, $custom);
-            $message = array('succeeded' => true, 'message' => SwpmUtils::_('Membership Level Creation Successful.'));
+            $message = array('succeeded' => true, 'message' => '<p>' . SwpmUtils::_('Membership Level Creation Successful.') . '</p>');
             SwpmTransfer::get_instance()->set('status', $message);
             wp_redirect('admin.php?page=simple_wp_membership_levels');
-            return;
+            exit(0);
         }
         $message = array('succeeded' => false, 'message' => SwpmUtils::_('Please correct the following:'), 'extra' => $form->get_errors());
         SwpmTransfer::get_instance()->set('status', $message);
@@ -53,18 +54,20 @@ class SwpmMembershipLevel {
             //@todo meta table and collect all relevant info and pass as argument
             $custom = apply_filters('swpm_admin_edit_membership_level', array(), $id);
             $this->save_custom_fields($id, $custom);
-            $message = array('succeeded' => true, 'message' => SwpmUtils::_('Updated Successfully.'));
+            $message = array('succeeded' => true, 'message' => '<p>'. SwpmUtils::_('Updated Successfully.') . '</p>');
             SwpmTransfer::get_instance()->set('status', $message);
             wp_redirect('admin.php?page=simple_wp_membership_levels');
-            return;
+            exit(0);
         }
         $message = array('succeeded' => false, 'message' => SwpmUtils::_('Please correct the following:'), 'extra' => $form->get_errors());
         SwpmTransfer::get_instance()->set('status', $message);
     }
-    private function save_custom_fields($level_id, $data){
+
+    private function save_custom_fields($level_id, $data) {
         $custom_obj = SwpmMembershipLevelCustom::get_instance_by_id($level_id);
-        foreach ($data as $item){
+        foreach ($data as $item) {
             $custom_obj->set($item);
         }
     }
+
 }

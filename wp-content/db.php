@@ -31,7 +31,7 @@ License: GPLv2 or newer.
 if( !defined('PG4WP_ROOT'))
 {
 // You can choose the driver to load here
-define('DB_DRIVER', 'pgsql'); // 'pgsql' or 'mysql' are supported for now
+define('DB_DRIVER', 'mysql'); // 'pgsql' or 'mysql' are supported for now
 
 // Set this to 'true' and check that `pg4wp` is writable if you want debug logs to be written
 define( 'PG4WP_DEBUG', false);
@@ -44,7 +44,8 @@ define( 'PG4WP_LOG_ERRORS', false);
 define( 'PG4WP_INSECURE', true);
 
 // Not entirely sure why this needs to be set, but it seems to be required since wp version 4
-define('WP_USE_EXT_MYSQL', true);
+// SET THIS TO TRUE IF USING POSTGRES P4WP
+define('WP_USE_EXT_MYSQL', false);
 
 // This defines the directory where PG4WP files are loaded from
 //   2 places checked : wp-content and wp-content/plugins

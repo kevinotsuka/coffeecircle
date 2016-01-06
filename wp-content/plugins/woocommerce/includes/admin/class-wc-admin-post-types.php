@@ -284,7 +284,7 @@ class WC_Admin_Post_Types {
 
 		switch ( $column ) {
 			case 'thumb' :
-				echo '<a href="' . get_edit_post_link( $post->ID ) . '">' . $the_product->get_image( 'thumbnail' ) . '</a>';
+				echo '<a href="' . get_edit_post_link( $post->ID ) . '">' . $the_product->get_image( 'post-thumbnail' ) . '</a>';
 				break;
 			case 'name' :
 				$edit_link = get_edit_post_link( $post->ID );
@@ -699,11 +699,7 @@ class WC_Admin_Post_Types {
 
 			break;
 			case 'order_total' :
-				if ( $the_order->get_total_refunded() > 0 ) {
-					echo '<del>' . strip_tags( $the_order->get_formatted_order_total() ) . '</del> <ins>' . wc_price( $the_order->get_total() - $the_order->get_total_refunded(), array( 'currency' => $the_order->get_order_currency() ) ) . '</ins>';
-				} else {
-					echo esc_html( strip_tags( $the_order->get_formatted_order_total() ) );
-				}
+				echo $the_order->get_formatted_order_total();
 
 				if ( $the_order->payment_method_title ) {
 					echo '<small class="meta">' . __( 'Via', 'woocommerce' ) . ' ' . esc_html( $the_order->payment_method_title ) . '</small>';
@@ -720,8 +716,6 @@ class WC_Admin_Post_Types {
 				if ( $the_order->billing_phone ) {
 					$customer_tip[] = __( 'Tel:', 'woocommerce' ) . ' ' . $the_order->billing_phone;
 				}
-
-				echo '<div class="tips" data-tip="' . wc_sanitize_tooltip( implode( "<br/>", $customer_tip ) ) . '">';
 
 				if ( $the_order->user_id ) {
 					$user_info = get_userdata( $the_order->user_id );
@@ -753,7 +747,7 @@ class WC_Admin_Post_Types {
 					echo '<small class="meta email"><a href="' . esc_url( 'mailto:' . $the_order->billing_email ) . '">' . esc_html( $the_order->billing_email ) . '</a></small>';
 				}
 
-				echo '</div>';
+				echo '<button type="button" class="toggle-row"><span class="screen-reader-text">' . __( 'Show more details', 'woocommerce' ) . '</span></button>';
 
 			break;
 			case 'order_actions' :
@@ -1042,7 +1036,7 @@ class WC_Admin_Post_Types {
 		// Save fields
 		if ( isset( $_REQUEST['_sku'] ) ) {
 			$sku     = get_post_meta( $post_id, '_sku', true );
-			$new_sku = wc_clean( stripslashes( $_REQUEST['_sku'] ) );
+			$new_sku = wc_clean( $_REQUEST['_sku'] );
 
 			if ( $new_sku !== $sku ) {
 				if ( ! empty( $new_sku ) ) {
@@ -1337,13 +1331,11 @@ class WC_Admin_Post_Types {
 						break;
 				}
 
-				if ( ! empty( $new_price ) && $new_price != $old_sale_price ) {
+				if ( isset( $new_price ) && $new_price != $old_sale_price ) {
 					$price_changed = true;
-					$new_price = round( $new_price, wc_get_price_decimals() );
+					$new_price = ! empty( $new_price ) || '0' === $new_price ? round( $new_price, wc_get_price_decimals() ) : '';
 					update_post_meta( $post_id, '_sale_price', $new_price );
 					$product->sale_price = $new_price;
-				} else {
-					update_post_meta( $post_id, '_sale_price', '' );
 				}
 			}
 
@@ -2062,7 +2054,7 @@ class WC_Admin_Post_Types {
 	public function edit_form_after_title(  $post ) {
 		if ( 'shop_coupon' === $post->post_type ) {
 			?>
-			<textarea id="woocommerce-coupon-description" name="excerpt" cols="5" rows="2" placeholder="<?php esc_attr_e( 'Description (optional)', 'woocommerce' ); ?>"><?php echo esc_textarea( $post->post_excerpt ); ?></textarea>
+			<textarea id="woocommerce-coupon-description" name="excerpt" cols="5" rows="2" placeholder="<?php esc_attr_e( 'Description (optional)', 'woocommerce' ); ?>"><?php echo $post->post_excerpt; // This is already escaped in core ?></textarea>
 			<?php
 		}
 	}
@@ -2123,7 +2115,7 @@ class WC_Admin_Post_Types {
 				<input type="hidden" name="current_featured" id="current_featured" value="<?php echo esc_attr( $current_featured ); ?>" />
 
 				<?php
-					echo '<p>' . __( 'Define the loops this product should be visible in. The product will still be accessible directly.', 'woocommerce' ) . '</p>';
+					echo '<p>' . __( 'Choose where this product should be displayed in your catalog. The product will always be accessible directly.', 'woocommerce' ) . '</p>';
 
 					foreach ( $visibility_options as $name => $label ) {
 						echo '<input type="radio" name="_visibility" id="_visibility_' . esc_attr( $name ) . '" value="' . esc_attr( $name ) . '" ' . checked( $current_visibility, $name, false ) . ' data-label="' . esc_attr( $label ) . '" /> <label for="_visibility_' . esc_attr( $name ) . '" class="selectit">' . esc_html( $label ) . '</label><br />';
@@ -2205,7 +2197,7 @@ class WC_Admin_Post_Types {
 			foreach ( $existing_permissions as $existing_permission ) {
 				$order = wc_get_order( $existing_permission->order_id );
 
-				if ( $order->id ) {
+				if ( ! empty( $order->id ) ) {
 					// Remove permissions
 					if ( ! empty( $removed_download_ids ) ) {
 						foreach ( $removed_download_ids as $download_id ) {
@@ -2221,7 +2213,7 @@ class WC_Admin_Post_Types {
 
 							if ( apply_filters( 'woocommerce_process_product_file_download_paths_grant_access_to_new_file', true, $download_id, $product_id, $order ) ) {
 								// grant permission if it doesn't already exist
-								if ( ! $wpdb->get_var( $wpdb->prepare( "SELECT 1 FROM {$wpdb->prefix}woocommerce_downloadable_product_permissions WHERE order_id = %d AND product_id = %d AND download_id = %s", $order->id, $product_id, $download_id ) ) ) {
+								if ( ! $wpdb->get_var( $wpdb->prepare( "SELECT 1=1 FROM {$wpdb->prefix}woocommerce_downloadable_product_permissions WHERE order_id = %d AND product_id = %d AND download_id = %s", $order->id, $product_id, $download_id ) ) ) {
 									wc_downloadable_file_permission( $download_id, $product_id, $order );
 								}
 							}

@@ -28,6 +28,7 @@ abstract class SwpmRegistration {
         $member_info['login_link'] = $login_link;
         $values = array_values($member_info);
         $keys = array_map('swpm_enclose_var', array_keys($member_info));
+        $body = html_entity_decode($body);
         $body = str_replace($keys, $values, $body);
         $email = sanitize_email(filter_input(INPUT_POST, 'email', FILTER_UNSAFE_RAW));
         
