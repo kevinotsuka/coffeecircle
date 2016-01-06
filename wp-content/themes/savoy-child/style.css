@@ -42,18 +42,18 @@ hr {
     margin: 6px auto 12px auto;
 }
 a#roaster9 {
-   background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/streamerbanner.jpg);
+   background-image: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/takamurabanner-1.jpg);
 }
 
-a#roaster11 {
-    background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/glitchbanner.jpg);
+a#roaster7 {
+    background-image: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/streamerbanner-1.jpg);
 }
 
-a#roaster13 {
-    background-image: url(http://fathomless-wave-1897.herokuapp.com/wp-content/uploads/takamurabanner.jpg);
+a#roaster8 {
+    background-image: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/glitchbanner-1.jpg);
 }
 
-a#roaster9, a#roaster11, a#roaster13 {
+a#roaster9, a#roaster7, a#roaster13 {
 	display: block;
     width: 400px;
     height: 300px;
