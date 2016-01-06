@@ -10,8 +10,11 @@
 	Tags: brown, black, gray, orange, tan, white, yellow, light, fluid-layout, responsive-layout, one-column, two-columns, custom-background, custom-colors, custom-header, custom-menu, theme-options, threaded-comments, translation-ready
 	Text Domain: nm-framework
 	Domain Path: /languages/
+	Template: savoy
+
 */
 
+@import url("../savoy/style.css");
 
 /* Child CSS
 --------------------------------------------------------------- */
