@@ -39,6 +39,7 @@ define('DB_COLLATE', '');
 define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);  
 
 define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME']);
+define('WP_HOME', 'http://' . $_SERVER['SERVER_NAME']);
 
 /**#@+
  * Authentication Unique Keys and Salts.
