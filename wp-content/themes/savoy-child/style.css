@@ -41,7 +41,25 @@ hr {
     display: block;
     margin: 6px auto 12px auto;
 }
+
 a#roaster9 {
+<<<<<<< HEAD
+   content: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/takamurabanner-1.jpg);
+}
+
+a#roaster7 {
+    content: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/streamerbanner-1.jpg);
+}
+
+a#roaster8 {
+    content: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/glitchbanner-1.jpg);
+}
+
+a#roaster9, a#roaster7, a#roaster8 {
+    display: block;
+    max-width: 100%;
+    height: auto;
+=======
    background-image: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/takamurabanner-1.jpg);
 }
 
@@ -57,9 +75,9 @@ a#roaster9, a#roaster7, a#roaster8 {
 	display: block;
     width: 400px;
     height: 300px;
+>>>>>>> master
     overflow: hidden;
     text-indent: -9999px;
-    background-size: 100%;
     opacity: 1;
     transition: opacity .25s ease-in-out;
    -moz-transition: opacity .25s ease-in-out;
