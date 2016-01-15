@@ -145,6 +145,7 @@ abstract class SwpmUtils {
             if (!empty($send_email) && empty($member->user_name)) {
                 $tags = array("{first_name}", "{last_name}", "{reg_link}");
                 $vals = array($member->first_name, $member->last_name, $reg_url);
+                $body = html_entity_decode($body);
                 $email_body = str_replace($tags, $vals, $body);
                 $headers = 'From: ' . $from_address . "\r\n";
                 wp_mail($member->email, $subject, $email_body, $headers);

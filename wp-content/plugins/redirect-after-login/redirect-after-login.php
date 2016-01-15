@@ -5,7 +5,7 @@
  * Description: Redirect users to specific locations after login, based in the role.
  * Author: marcelotorres
  * Author URI: http://marcelotorresweb.com/
- * Version: 0.1
+ * Version: 0.1.5
  * License: GPLv2 or later
  * Text Domain: mtral
  * Domain Path: /languages/

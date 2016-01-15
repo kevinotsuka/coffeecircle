@@ -6,7 +6,7 @@
 
     <div id="poststuff"><div id="post-body">
             <div class="postbox">
-                <h3><label for="title"><?php echo SwpmUtils::_('Generate a Registration Completion link') ?></label></h3>
+                <h3 class="hndle"><label for="title"><?php echo SwpmUtils::_('Generate a Registration Completion link') ?></label></h3>
                 <div class="inside">
 
                     <p><strong><?php echo SwpmUtils::_('You can manually generate a registration completion link here and give it to your customer if they have missed the email that was automatically sent out to them after the payment.') ?></strong></p>
@@ -15,7 +15,7 @@
                         <table>
                             <tr>
                                 <?php echo SwpmUtils::_('Generate Registration Completion Link') ?>
-                            <br /><input type="radio" value="one" name="swpm_link_for" />For a Particular Member ID
+                            <br /><input type="radio" value="one" name="swpm_link_for" /><?php SwpmUtils::e('For a Particular Member ID'); ?>
                             <input type="text" name="member_id" size="5" value="" />
                             <br /> <strong> <?php echo SwpmUtils::_('OR') ?> </strong>
                             <br /><input type="radio" checked="checked" value="all" name="swpm_link_for" /> <?php echo SwpmUtils::_('For All Pending Registrations') ?>

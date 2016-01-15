@@ -86,7 +86,7 @@ class WC_Gateway_Simplify_Commerce extends WC_Payment_Gateway {
 	 */
 	public function admin_options() {
 		?>
-		<h3><?php _e( 'Simplify Commerce by Mastercard', 'woocommerce' ); ?></h3>
+		<h3><?php _e( 'Simplify Commerce by MasterCard', 'woocommerce' ); ?></h3>
 
 		<?php if ( empty( $this->public_key ) ) : ?>
 			<div class="simplify-commerce-banner updated">
@@ -197,7 +197,7 @@ class WC_Gateway_Simplify_Commerce extends WC_Payment_Gateway {
 				'title'       => __( 'Description', 'woocommerce' ),
 				'type'        => 'text',
 				'description' => __( 'This controls the description which the user sees during checkout.', 'woocommerce' ),
-				'default'     => 'Pay with your credit card via Simplify Commerce by Mastercard.',
+				'default'     => 'Pay with your credit card via Simplify Commerce by MasterCard.',
 				'desc_tip'    => true
 			),
 			'mode' => array(
@@ -327,13 +327,7 @@ class WC_Gateway_Simplify_Commerce extends WC_Payment_Gateway {
 				'token'               => $cart_token,
 				'description'         => sprintf( __( '%s - Order #%s', 'woocommerce' ), esc_html( get_bloginfo( 'name', 'display' ) ), $order->get_order_number() ),
 				'currency'            => strtoupper( get_woocommerce_currency() ),
-				'reference'           => $order->id,
-				'card.addressCity'    => $order->billing_city,
-				'card.addressCountry' => $order->billing_country,
-				'card.addressLine1'   => $order->billing_address_1,
-				'card.addressLine2'   => $order->billing_address_2,
-				'card.addressState'   => $order->billing_state,
-				'card.addressZip'     => $order->billing_postcode
+				'reference'           => $order->id
 			) );
 
 			$order_complete = $this->process_order_status( $order, $payment->id, $payment->paymentStatus, $payment->authCode );
@@ -404,14 +398,19 @@ class WC_Gateway_Simplify_Commerce extends WC_Payment_Gateway {
 	 */
 	protected function get_hosted_payments_args( $order ) {
 		$args = apply_filters( 'woocommerce_simplify_commerce_hosted_args', array(
-			'sc-key'       => $this->public_key,
-			'amount'       => $order->order_total * 100,
-			'reference'    => $order->id,
-			'name'         => esc_html( get_bloginfo( 'name', 'display' ) ),
-			'description'  => sprintf( __( 'Order #%s', 'woocommerce' ), $order->get_order_number() ),
-			'receipt'      => 'false',
-			'color'        => $this->modal_color,
-			'redirect-url' => WC()->api_request_url( 'WC_Gateway_Simplify_Commerce' )
+			'sc-key'          => $this->public_key,
+			'amount'          => $order->order_total * 100,
+			'reference'       => $order->id,
+			'name'            => esc_html( get_bloginfo( 'name', 'display' ) ),
+			'description'     => sprintf( __( 'Order #%s', 'woocommerce' ), $order->get_order_number() ),
+			'receipt'         => 'false',
+			'color'           => $this->modal_color,
+			'redirect-url'    => WC()->api_request_url( 'WC_Gateway_Simplify_Commerce' ),
+			'address'         => $order->billing_address_1 . ' ' . $order->billing_address_2,
+			'address-city'    => $order->billing_city,
+			'address-state'   => $order->billing_state,
+			'address-zip'     => $order->billing_postcode,
+			'address-country' => $order->billing_country
 		), $order->id );
 
 		return $args;
@@ -542,7 +541,7 @@ class WC_Gateway_Simplify_Commerce extends WC_Payment_Gateway {
 	 */
 	public function get_icon() {
 		$icon  = '<img src="' . WC_HTTPS::force_https_url( WC()->plugin_url() . '/assets/images/icons/credit-cards/visa.png' ) . '" alt="Visa" />';
-		$icon .= '<img src="' . WC_HTTPS::force_https_url( WC()->plugin_url() . '/assets/images/icons/credit-cards/mastercard.png' ) . '" alt="Mastercard" />';
+		$icon .= '<img src="' . WC_HTTPS::force_https_url( WC()->plugin_url() . '/assets/images/icons/credit-cards/mastercard.png' ) . '" alt="MasterCard" />';
 		$icon .= '<img src="' . WC_HTTPS::force_https_url( WC()->plugin_url() . '/assets/images/icons/credit-cards/discover.png' ) . '" alt="Discover" />';
 		$icon .= '<img src="' . WC_HTTPS::force_https_url( WC()->plugin_url() . '/assets/images/icons/credit-cards/amex.png' ) . '" alt="Amex" />';
 		$icon .= '<img src="' . WC_HTTPS::force_https_url( WC()->plugin_url() . '/assets/images/icons/credit-cards/jcb.png' ) . '" alt="JCB" />';
