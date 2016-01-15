@@ -36,6 +36,11 @@ define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
+define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);  
+
+define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME']);
+define('WP_HOME', 'http://' . $_SERVER['SERVER_NAME']);
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *
@@ -53,6 +58,7 @@ define('AUTH_SALT',        '{Mm%z7.b~~CJ>KMhC:bSRc*@58g(=K3% Bh|jPX`4+%%Rk01Larc
 define('SECURE_AUTH_SALT', '<Bn4%ud`i{6?bwj|R>;N.W%BDogx{4]Gpgd4vqJ-pB*,J-)-#lv/9|@%84arXCkt');
 define('LOGGED_IN_SALT',   'zmY_0O}Tb$ISa:6D<-iF!-q^B.7RWL| OJF)+W=SJcM|zSe]C/U^lz(~=DQ+QQI`');
 define('NONCE_SALT',       'SBRFrQmt$lwsR^t*&Y]{FgV`^wol+F!u-;^vmv@xzs-W55+*+^]WpAp7M)U6!f$`');
+
 
 /**#@-*/
 

@@ -3,7 +3,7 @@
         <input type ="hidden" name="level_identifier" value="<?php echo $level_identifier ?>" />
         <table>
             <tr>
-                <td><label for="user_name"><?php echo SwpmUtils::_('User Name') ?></label></td>
+                <td><label for="user_name"><?php echo SwpmUtils::_('Username') ?></label></td>
                 <td><input type="text" id="user_name" class="validate[required,custom[noapostrophe],custom[SWPMUserName],minSize[4],ajax[ajaxUserCall]]" value="<?php echo $user_name; ?>" size="50" name="user_name" /></td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@
         <div class="swpm-before-registration-submit-section" align="center"><?php echo apply_filters('swpm_before_registration_submit_button', ''); ?></div>
         
         <div class="swpm-registration-submit-section" align="center">
-            <input type="submit" value="<?php echo SwpmUtils::_('Register') ?>" id="submit" name="swpm_registration_submit" />
+            <input type="submit" value="<?php echo SwpmUtils::_('Register') ?>" class="swpm-registration-submit" name="swpm_registration_submit" />
         </div>
         
         <input type="hidden" name="action" value="custom_posts" />

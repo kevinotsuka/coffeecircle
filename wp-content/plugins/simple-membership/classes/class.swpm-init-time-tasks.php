@@ -3,7 +3,7 @@
 class SwpmInitTimeTasks {
 
     public function __construct() {
-        
+
     }
 
     public function do_init_tasks() {
@@ -27,7 +27,7 @@ class SwpmInitTimeTasks {
             $this->admin_init();
         }
 
-        //Do frontend-only init time taks 
+        //Do frontend-only init time taks
         if (!is_admin()) {
             SwpmAuth::get_instance();
             $this->verify_and_delete_account();
@@ -35,6 +35,7 @@ class SwpmInitTimeTasks {
             if (!empty($swpm_logout)) {
                 SwpmAuth::get_instance()->logout();
                 wp_redirect(home_url());
+                exit(0);
             }
             $this->process_password_reset();
             $this->register_member();
@@ -64,6 +65,11 @@ class SwpmInitTimeTasks {
             $id = filter_input(INPUT_GET, 'id');
             SwpmMembershipLevel::get_instance()->edit($id);
         }
+        $update_category_list = filter_input(INPUT_POST, 'update_category_list');
+        if (!empty($update_category_list)) {
+            include_once('class.swpm-category-list.php');
+            SwpmCategoryList::update_category_list();
+        }
     }
 
     public function create_post_type() {
@@ -79,7 +85,6 @@ class SwpmInitTimeTasks {
             'hierarchical' => false,
             'supports' => array('title', 'editor')
         ));
-        
     }
 
     private function verify_and_delete_account() {
@@ -105,6 +110,7 @@ class SwpmInitTimeTasks {
         if ($auth->match_password($password)) {
             $auth->delete();
             wp_redirect(home_url());
+            exit(0);
         } else {
             SwpmUtils::account_delete_confirmation_ui(SwpmUtils::_("Sorry, Password didn't match."));
         }

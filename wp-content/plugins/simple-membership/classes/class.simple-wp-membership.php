@@ -41,7 +41,8 @@ class SimpleWpMembership {
         add_filter('wp_get_attachment_url', array(&$this, 'filter_attachment_url'), 10, 2);
         add_filter('wp_get_attachment_metadata', array(&$this, 'filter_attachment'), 10, 2);
         add_filter('attachment_fields_to_save', array(&$this, 'save_attachment_extra'), 10, 2);
-        add_filter('the_content_more_link', array(&$this, 'filter_moretag'), 10, 2);
+        // the_content_more_link filter adds empty line. we have an alternative implementation of more tag protection.
+        //add_filter('the_content_more_link', array(&$this, 'filter_moretag'), 10, 2);
 
         //TODO - refactor these shortcodes into the shortcodes handler class
         add_shortcode("swpm_registration_form", array(&$this, 'registration_form'));
@@ -175,6 +176,7 @@ class SimpleWpMembership {
         do_action('swpm_after_login');
         if (!SwpmUtils::is_ajax()) {
             wp_redirect(site_url());
+            exit(0);
         }
     }
 
@@ -501,16 +503,14 @@ class SimpleWpMembership {
         $members = new SwpmMembers();
         $action = filter_input(INPUT_GET, 'member_action');
         $action = empty($action) ? filter_input(INPUT_POST, 'action') : $action;
-        $output = '';
+        $output = '';       
         switch ($action) {
             case 'add':
             case 'edit':
                 $members->process_form_request();
                 break;
-            case 'delete':
-                $members->delete();
             default:
-                $output = apply_filters('swpm_admin_member_menu_details_hook', $action, '');
+                $output = apply_filters('swpm_admin_member_menu_details_hook', '', $action);
                 if (empty($output)) {
                     $output = $members->show();
                 }
