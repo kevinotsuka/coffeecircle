@@ -331,9 +331,6 @@
 		
 		echo $output;
 
-		/*trying to add all filter at end of menu*/
-		echo '<li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li>';
-
 	}
 	
 	
