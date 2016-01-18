@@ -65,3 +65,18 @@ function my_free_shipping( $is_available ) {
 	return $is_available;
 }
 add_filter( 'woocommerce_shipping_free_shipping_is_available', 'my_free_shipping', 20 );
+
+/**
+* Function to redirect users whether logged in or not 
+*/
+function switch_homepage() {
+
+if ( is_user_logged_in() ) {
+    $page = get_page_by_title( 'welcome');
+    update_option( 'page_on_front', $page->ID );
+    update_option( 'show_on_front', 'page' );
+	} 
+	
+}
+
+add_action( 'init', 'switch_homepage' );
