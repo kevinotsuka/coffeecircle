@@ -80,3 +80,4 @@ if ( is_user_logged_in() ) {
 }
 
 add_action( 'init', 'switch_homepage' );
+}
