@@ -69,6 +69,7 @@ add_filter( 'woocommerce_shipping_free_shipping_is_available', 'my_free_shipping
 /**
 * Function to redirect users whether logged in or not 
 */
+/*
 function switch_homepage() {
 
 if ( is_user_logged_in() ) {
@@ -81,3 +82,4 @@ if ( is_user_logged_in() ) {
 
 add_action( 'init', 'switch_homepage' );
 }
+*/
