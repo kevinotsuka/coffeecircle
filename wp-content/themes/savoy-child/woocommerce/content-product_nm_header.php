@@ -49,7 +49,7 @@ if ( $nm_globals['shop_search'] ) {
 }
 ?>
     <div class="nm-shop-header<?php echo esc_attr( $header_class ); ?>">
-        <div class="nm-shop-menu" id="kevin-debug">
+        <div class="nm-shop-menu">
             <div class="nm-row">
                 <div class="col-xs-12">
                     <ul id="nm-shop-filter-menu" class="nm-shop-filter-menu">
