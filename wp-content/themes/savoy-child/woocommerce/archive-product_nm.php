@@ -7,19 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-//
-if ( is_user_logged_in() ) {
-
-add_action('wp_logout',
-create_function(
-    '',
-    'wp_redirect("'.get_permalink(get_page_by_title('welcome')).'");exit();'
-  )
-    );
-
-}
-//
-
 global $nm_theme_options, $nm_globals;
 
 nm_add_page_include( 'products' );
