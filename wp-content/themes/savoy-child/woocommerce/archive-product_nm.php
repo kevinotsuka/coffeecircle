@@ -70,7 +70,7 @@ get_header(); ?>
     
 	<?php endif; ?>
         
-    <div id="nm-shop" class="nm-shop">
+    <div id="nm-shop" class="nm-shop" style="kevin-debug">
         
         <?php 
 			// Shop header
