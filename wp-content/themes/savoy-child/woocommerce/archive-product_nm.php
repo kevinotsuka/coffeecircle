@@ -7,14 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-//
-if ( is_user_logged_in() ) {
-
-wp_redirect('http://www.coffeeconnection.jp/welcome'); exit;
-
-}
-//
-
 global $nm_theme_options, $nm_globals;
 
 nm_add_page_include( 'products' );
@@ -70,7 +62,7 @@ get_header(); ?>
     
 	<?php endif; ?>
         
-    <div id="nm-shop" class="nm-shop" style="kevin-debug">
+    <div id="nm-shop" class="nm-shop">
         
         <?php 
 			// Shop header
