@@ -10,6 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 //
 if ( is_user_logged_in() ) {
+    //
+}
+else {
     wp_redirect('http://www.coffeeconnection.jp/welcome'); exit;
 }
 //
