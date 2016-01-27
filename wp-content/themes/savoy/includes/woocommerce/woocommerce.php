@@ -325,8 +325,10 @@
 		if ( strlen( $sub_output ) > 0 ) {
 			$sub_output = '<ul class="nm-shop-sub-categories">' . $sub_output . '</ul>';
 		}
-		
+
 		$output = $output . $sub_output;
+		$output .= '<div><li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li></div>';
+
 		
 		echo $output;
 	}
