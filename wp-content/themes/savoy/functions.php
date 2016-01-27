@@ -701,7 +701,7 @@
 		foreach ( $categories as $category ) {
 			if ( $current_cat == $category->cat_ID ) {
 				$current_class_set = true;
-				$current_class = ' class="current-cat"';
+				$current_class = ' class="current-catbreak"';
 			} else {
 				$current_class = '';
 			}
@@ -722,7 +722,7 @@
 		}
 		
 		// "All" category class attr
-		$current_class = ( $current_class_set ) ? '' : ' class="current-cat"';
+		$current_class = ( $current_class_set ) ? '' : ' class="current-catbreak"';
 		
 		$output = '<div class="nm-blog-categories-wrap ' . esc_attr( $categories_class ) . '">';
 		$output .= '<ul class="nm-blog-categories-toggle"><li><a href="#" id="nm-blog-categories-toggle-link">' . esc_html__( 'Categories', 'nm-framework' ) . '</a> <em class="count">' . $categories_count . '</em></li></ul>';
