@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="woocommerce-checkout-review-order-table nm-row">
     <div class="col-md-4 col-xs-12">
-        <h3 id="order_review_heading"><?php _e( 'Your Order', 'nm-framework' ); ?></h3>
+        <h3 id="order_review_heading"><?php _e( '注文内容', 'nm-framework' ); ?></h3>
     </div>
     
     <div class="col-md-8 col-xs-12">
