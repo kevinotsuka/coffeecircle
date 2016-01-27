@@ -100,7 +100,7 @@ if ( sizeof( WC()->cart->get_cart() ) == 0 ) {
                 <?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
             
                 <div class="buttons">
-                    <a href="<?php echo WC()->cart->get_cart_url(); ?>" class="button view-cart wc-forward"><?php _e( 'Edit Cart', 'nm-framework' ); ?></a>
+                    <a href="<?php echo WC()->cart->get_cart_url(); ?>" class="button view-cart wc-forward"><?php _e( 'カートの編集', 'nm-framework' ); ?></a>
                     <a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="button checkout wc-forward"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
                 </div>
             </div>
