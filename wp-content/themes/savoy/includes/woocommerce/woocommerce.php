@@ -327,7 +327,7 @@
 		}
 
 		$output = $output . $sub_output;
-		$output .= '<div><li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li></div>';
+		$output .= '<div><li' . $all_categories_class . '><a id="all-filter" href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li></div>';
 
 		
 		echo $output;
