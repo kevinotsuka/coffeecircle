@@ -279,7 +279,7 @@
 			}
 		}
 		/*taking out all selector for now 12/25/2015, and yes, on Christmas I was working ;) */
-		/*$output = '<li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li>';*/
+		$output = '<li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li>';
 		$sub_output = '';
 		
 		// Categories order
@@ -322,10 +322,6 @@
 			
 			$output .= nm_category_menu_create_list( $category, $current_cat_id, $categories_menu_divider );
 		}
-
-		/*adding all filter*/
-		$allfilter = '<div><li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li></div>';*/
-		/*adding all filter*/
 		
 		if ( strlen( $sub_output ) > 0 ) {
 			$sub_output = '<ul class="nm-shop-sub-categories">' . $sub_output . '</ul>';
@@ -334,7 +330,6 @@
 		$output = $output . $sub_output;
 		
 		echo $output;
-		echo $allfilter;
 
 	}
 	
