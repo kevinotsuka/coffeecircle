@@ -806,7 +806,7 @@
 .nm-shop-menu ul li:last-child a {
 	margin-right: 0;
 }
-.nm-shop-menu ul li.current-cat a,
+/*.nm-shop-menu ul li.current-cat a,*/
 .nm-shop-menu ul li.active a {
 	color: #dc9814;
 	padding-bottom: 5px;
@@ -865,13 +865,14 @@
 }
 
 /* Header: Product categories menu - Back button */
-.nm-shop-categories li.nm-category-back-button.current-cat a {
+/*.nm-shop-categories li.nm-category-back-button.current-cat a {
 	color: inherit;
 	padding-bottom: 0;
 	border-bottom: 0 none;
 	opacity: 0.5;
 	cursor: default;
 }
+*/
 .nm-shop-categories li.nm-category-back-button a i {
 	vertical-align: middle;
 }
@@ -883,7 +884,7 @@
 .nm-shop-categories.list_nosep li:last-of-type a {
 	margin-right: 0;
 }
-.nm-shop-categories.list_nosep li.current-cat a,
+/*.nm-shop-categories.list_nosep li.current-cat a,*/
 .nm-shop-categories.list_nosep li.active a {
 	padding-bottom: 1px;
 }
@@ -1342,11 +1343,11 @@
 	.nm-shop-menu .nm-shop-categories li a {
 		font-size: 16px;
 	}
-	.nm-shop-menu .nm-shop-categories li.current-cat a {
+	/*.nm-shop-menu .nm-shop-categories li.current-cat a {
 		color: #282828;
 		border-bottom: 0 none;
 		padding-bottom: 0;
-	}
+	}*/
 	
 	/* Sidebar/filters */
 	#nm-shop-sidebar .nm-shop-sidebar-inner {
@@ -3959,9 +3960,9 @@ div.create-account span {
 .widget_product_categories ul li:last-child {
 	margin-bottom: 0;
 }
-.widget_product_categories ul li.current-cat > a {
+/*.widget_product_categories ul li.current-cat > a {
 	color: #dc9814;
-}
+}*/
 
 
 /* Widgets: 
