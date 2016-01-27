@@ -274,7 +274,7 @@
 		} else {
 			// No current category, set "All" as current (if not product tag archive or search)
 			if ( ! is_product_tag() && ! isset( $_REQUEST['s'] ) ) {
-				$all_categories_class = ' class="current-cat"';
+				$all_categories_class = ' class="current-catbreak"';
 			}
 		}
 		/*taking out all selector for now 12/25/2015, and yes, on Christmas I was working ;) */
@@ -388,7 +388,7 @@
 		
 		// Current category link
 		$current_cat_url = get_term_link( (int) $current_cat_id, 'product_cat' );
-		$output_current_cat = '<li class="current-cat"><a href="' . esc_url( $current_cat_url ) . '">' . esc_html( $current_cat_name ) . '</a></li>';
+		$output_current_cat = '<li class="current-catbreak"><a href="' . esc_url( $current_cat_url ) . '">' . esc_html( $current_cat_name ) . '</a></li>';
 		
 		echo $output_parent_cat . $output_current_cat . $output_sub_categories;
 	}
