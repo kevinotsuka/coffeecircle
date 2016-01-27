@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		    
         <div id="payment" class="nm-row">
         	<div class="col-md-4 col-xs-12">
-                <h3><?php _e( 'お振込先', 'woocommerce' ); ?></h3>
+                <h3><?php _e( 'Payment', 'woocommerce' ); ?></h3>
             </div>
             
 			<div class="col-md-8 col-xs-12">
