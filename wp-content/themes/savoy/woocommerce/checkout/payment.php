@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div id="payment" class="woocommerce-checkout-payment nm-row">
 	<?php if ( WC()->cart->needs_payment() ) : ?>
 	<div class="col-md-4 col-xs-12">
-        <h3 id="order_review_heading"><?php esc_html_e( 'Payment', 'nm-framework' ); ?></h3>
+        <h3 id="order_review_heading"><?php esc_html_e( 'お振込先', 'nm-framework' ); ?></h3>
     </div>
     
     <div class="col-md-8 col-xs-12">
