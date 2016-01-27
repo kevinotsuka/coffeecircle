@@ -324,7 +324,7 @@
 		}
 
 		/*adding all filter*/
-		$output = '<div><li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li></div>';*/
+		$allfilter = '<div><li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li></div>';*/
 		/*adding all filter*/
 		
 		if ( strlen( $sub_output ) > 0 ) {
@@ -334,6 +334,7 @@
 		$output = $output . $sub_output;
 		
 		echo $output;
+		echo $allfilter;
 
 	}
 	
