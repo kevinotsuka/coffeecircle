@@ -279,7 +279,7 @@
 			}
 		}
 		/*taking out all selector for now 12/25/2015, and yes, on Christmas I was working ;) */
-		$output = '<li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li>';
+		/*$output = '<li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li>';*/
 		$sub_output = '';
 		
 		// Categories order
@@ -330,6 +330,8 @@
 		$output = $output . $sub_output;
 		
 		echo $output;
+
+		echo = '<div><li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li></div>';
 
 	}
 	
