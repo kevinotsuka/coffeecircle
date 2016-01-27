@@ -322,6 +322,10 @@
 			
 			$output .= nm_category_menu_create_list( $category, $current_cat_id, $categories_menu_divider );
 		}
+
+		/*adding all filter*/
+		$output = '<div><li' . $all_categories_class . '><a href="' . esc_url ( $page_url ) . '">' . esc_html__( 'All', 'nm-framework' ) . '</a></li></div>';*/
+		/*adding all filter*/
 		
 		if ( strlen( $sub_output ) > 0 ) {
 			$sub_output = '<ul class="nm-shop-sub-categories">' . $sub_output . '</ul>';
