@@ -1,11 +1,11 @@
 /*
-	Theme Name:   Savoy Child Theme
-	Theme URI:    http://themeforest.net
-	Description:  Savoy child theme
-	Author:       NordicMade
-	Author URI:   http://www.nordicmade.com
-	Template:     savoy
-	Version:      1.0.1
+    Theme Name:   Savoy Child Theme
+    Theme URI:    http://themeforest.net
+    Description:  Savoy child theme
+    Author:       NordicMade
+    Author URI:   http://www.nordicmade.com
+    Template:     savoy
+    Version:      1.0.1
 */
 
 
@@ -13,24 +13,24 @@
 --------------------------------------------------------------- */
 
 .nm-team {
-	padding:0px;
+    padding:0px;
 }
 
 .nm-team > li + [class*="block-grid-"] > li{
-	padding:0px;
+    padding:0px;
 }
 
 .nm-menu li a {
     display: inline-block;
     font-size: 12px;
 
-	line-height: 1;
-	font-weight: normal;
+    line-height: 1;
+    font-weight: normal;
     color: #707070;
-	vertical-align: bottom;
-	text-decoration: none;
-	padding: 16px;
-	text-transform: uppercase;
+    vertical-align: bottom;
+    text-decoration: none;
+    padding: 16px;
+    text-transform: uppercase;
 }
 
 hr {
@@ -42,33 +42,6 @@ hr {
     margin: 6px auto 12px auto;
 }
 
-a#roaster9 {
-   content: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/takamurabanner-1.jpg);
-}
-
-a#roaster7 {
-    content: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/streamerbanner-1.jpg);
-}
-
-a#roaster8 {
-    content: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/glitchbanner-1.jpg);
-}
-
-a#roaster9, a#roaster7, a#roaster8 {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    overflow: hidden;
-    text-indent: -9999px;
-    opacity: 1;
-    transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
-}
-
- a#roaster7:hover,  a#roaster8:hover,  a#roaster9:hover {
-      opacity: 0.5;
-      }
 
 
 a#all-filter {
@@ -82,7 +55,7 @@ a#all-filter {
 }
 
 .nm-shop-categories {
-	column-count: 3;
+    column-count: 3;
     column-gap: 20px;
     -moz-column-count: 3;
     -moz-column-gap: 20px;
@@ -92,15 +65,65 @@ a#all-filter {
 
 /* Summary: Quantity */
 .product-summary .nm-quantity-wrap {
-	position: relative;
-	width: 100%;
-	text-align: center;
-	border: 1px solid #dadada;
-	border-bottom: 0 none;	
-	overflow: hidden;
-	padding-top: 5px;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #dadada;
+    border-bottom: 0 none;  
+    overflow: hidden;
+    padding-top: 5px;
 }
 
 .product-summary .nm-quantity-wrap label {
-	font-weight: bold;
+    font-weight: bold;
 }
+
+/*streamer adjustments*/
+ a#roaster8, a#roaster9, a#all-filter {
+    display: block;
+    text-indent: -9999px;
+ }
+
+a#roaster7 {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    text-indent: -9999px;
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+a#roaster7 {
+    content: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/streamerbanner-1.jpg);
+}
+
+a#roaster7:hover,  a#roaster8:hover,  a#roaster9:hover {
+      opacity: 0.5;
+      }
+
+/*
+a#roaster9, a#roaster7, a#roaster8 {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    text-indent: -9999px;
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+a#roaster9 {
+   content: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/takamurabanner-1.jpg);
+}
+
+a#roaster8 {
+    content: url(https://s3-ap-northeast-1.amazonaws.com/coffeecdn/static/glitchbanner-1.jpg);
+}
+
+*/
