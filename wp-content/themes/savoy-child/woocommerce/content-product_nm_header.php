@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 //
 if ( is_user_logged_in() ) {
     //redirecting to streamer latte art blend page for now
-    wp_redirect('http://www.coffeeconnection.jp/shop/streamer/latte-art-blend/') exit;
+    wp_redirect('http://www.coffeeconnection.jp/shop/streamer/latte-art-blend/'); exit;
 }
 else {
     wp_redirect('http://www.coffeeconnection.jp/welcome'); exit;
