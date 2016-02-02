@@ -10124,9 +10124,7 @@ msgstr "参考までに、ご注文の詳細は以下の通りです"
 
 #: templates/emails/customer-processing-order.php:18
 #: templates/emails/plain/customer-processing-order.php:16
-msgid ""
-"Your order has been received and is now being processed. Your order details "
-"are shown below for your reference:"
+msgid "Your order has been received and is now being processed. Your order details are shown below for your reference:"
 msgstr "お客様のご注文は問題なく受信され、現在弊社にて処理中でございます。ご注文の詳細は以下の通りです。"
 
 #: templates/emails/customer-refunded-order.php:20
