@@ -289,7 +289,8 @@ class WC_Email extends WC_Settings_API {
 	 * @return string
 	 */
 	public function get_headers() {
-		return apply_filters( 'woocommerce_email_headers', "Content-Type: " . $this->get_content_type() . "\r\n", $this->id, $this->object );
+          return apply_filters( 'woocommerce_email_headers', "Content-Type: " . $this->get_content_type() . "; charset=UTF-8\r\n", $this->id, $this->object );
+          //return apply_filters( 'woocommerce_email_headers', "Content-Type: " . $this->get_content_type() . "\r\n", $this->id, $this->object );
 	}
 
 	/**
