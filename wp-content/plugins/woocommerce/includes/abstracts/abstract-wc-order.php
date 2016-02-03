@@ -1138,8 +1138,29 @@ abstract class WC_Abstract_Order {
 			$items[ $item->order_item_id ]['item_meta']       = $this->get_item_meta( $item->order_item_id );
 			$items[ $item->order_item_id ]['item_meta_array'] = $this->get_item_meta_array( $item->order_item_id );
 			$items[ $item->order_item_id ]                    = $this->expand_item_meta( $items[ $item->order_item_id ] );
+                        if (array_key_exists('product_id', $items[ $item->order_item_id ])) {
+                          $product_id = $items[ $item->order_item_id ]['product_id'];
+                          $categories = get_the_term_list( $product_id, 'product_cat' );
+                          $category_count = 0;
+                          if (strpos($categories, 'streamer') !== false) {
+                            $categories = 'Streamer Coffee';
+                            $category_count++;
+                          }
+                          if (strpos($categories, 'takamura') !== false) {
+                            $categories = 'Takamura Wine &amp; Coffee';
+                            $category_count++;
+                          }
+                          if (strpos($categories, 'glitch') !== false) {
+                            $categories = 'Glitch';
+                            $category_count++;
+                          }
+                          if ($category_count > 1) {
+                            $categories = "Multi Roaster";
+                          }
+                          $items[ $item->order_item_id ]['categories'] = $categories;
+                          $items[ $item->order_item_id ]['item_meta']['_categories'] = $categories;
+                        }
 		}
-
 		return apply_filters( 'woocommerce_order_get_items', $items, $this );
 	}
 
