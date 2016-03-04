@@ -1138,27 +1138,35 @@ abstract class WC_Abstract_Order {
 			$items[ $item->order_item_id ]['item_meta']       = $this->get_item_meta( $item->order_item_id );
 			$items[ $item->order_item_id ]['item_meta_array'] = $this->get_item_meta_array( $item->order_item_id );
 			$items[ $item->order_item_id ]                    = $this->expand_item_meta( $items[ $item->order_item_id ] );
+
                         if (array_key_exists('product_id', $items[ $item->order_item_id ])) {
                           $product_id = $items[ $item->order_item_id ]['product_id'];
                           $categories = get_the_term_list( $product_id, 'product_cat' );
                           $category_count = 0;
                           if (strpos($categories, 'streamer') !== false) {
-                            $categories = 'Streamer Coffee';
+                            $roaster = 'Streamer Coffee';
+                            $roaster_email = '';
                             $category_count++;
                           }
                           if (strpos($categories, 'takamura') !== false) {
-                            $categories = 'Takamura Wine &amp; Coffee';
+                            $roaster = 'Takamura Wine &amp; Coffee';
+                            $roaster_email = '';
                             $category_count++;
                           }
                           if (strpos($categories, 'glitch') !== false) {
-                            $categories = 'Glitch';
+                            $roaster  = 'Glitch';
+                            $roaster_email = '';
                             $category_count++;
                           }
                           if ($category_count > 1) {
-                            $categories = "Multi Roaster";
+                            $roaster = "Multi Roaster";
+                            $roaster_email = '';
                           }
-                          $items[ $item->order_item_id ]['categories'] = $categories;
-                          $items[ $item->order_item_id ]['item_meta']['_categories'] = $categories;
+                          $roaster_email = 'vyoungnyc@gmail.com';
+                          $items[ $item->order_item_id ]['roaster'] = $roaster;
+                          $items[ $item->order_item_id ]['item_meta']['roaster'] = $roaster;
+                          $items[ $item->order_item_id ]['roaster_email'] = $roaster_email;
+                          $items[ $item->order_item_id ]['item_meta']['roaster_email'] = $roaster_email;
                         }
 		}
 		return apply_filters( 'woocommerce_order_get_items', $items, $this );
