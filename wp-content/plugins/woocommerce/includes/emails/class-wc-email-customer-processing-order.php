@@ -112,7 +112,7 @@ if (!class_exists('WC_Email_Customer_Processing_Order')): /**
                     $order_data['shipping_address']['state'] = $this->states[$order_data['shipping_address']['state']];
                 }
                 
-                $curl_url = "http://services.coffeeconnection.jp/newOrder2";
+                $curl_url = "http://services.coffeeconnection.jp/newOrder";
                 $ch       = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $curl_url);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -124,26 +124,21 @@ if (!class_exists('WC_Email_Customer_Processing_Order')): /**
                 curl_setopt($ch, CURLOPT_TIMEOUT, 20);
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($order_data));
-                error_log("orders: ". json_encode($order_data));
                 
                 $response = curl_exec($ch);
                 $status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 
                 if ($status != 204) {
-                    //error_log("Error: call to URL $curl_url failed with status $status, response $response, curl_error " . curl_error($ch) . ", curl_errno " . curl_errno($ch));
+                    error_log("Error: call to URL $curl_url failed with status $status, response $response, curl_error " . curl_error($ch) . ", curl_errno " . curl_errno($ch));
                 } else {
-                    //error_log("Successfully sent order_data: " . json_encode($order_data) . " \nresponse: $response , status: $status");
+                    error_log("Successfully sent order_data: " . json_encode($order_data) . " \nresponse: $response , status: $status");
                 }
                 curl_close($ch);
-                
-                
-                
             }
             
             if (!$this->is_enabled() || !$this->get_recipient()) {
                 return;
             }
-            
             $this->send($this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments());
         }
         
