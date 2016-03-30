@@ -9,16 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 //
-if ( is_user_logged_in() ) {
-    //redirecting to streamer latte art blend page for now
-    wp_redirect('http://'.$_SERVER['SERVER_NAME'].'/shop/streamer/latte-art-blend/'); exit;
-}
-else {
+if ( !is_user_logged_in() ) {
     wp_redirect('http://'.$_SERVER['SERVER_NAME'].'/welcome'); exit;
 }
-
-
-//
 
 global $wp_query, $nm_theme_options, $nm_globals, $nm_page_includes;
 
