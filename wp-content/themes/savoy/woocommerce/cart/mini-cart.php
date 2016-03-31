@@ -83,7 +83,7 @@ if ( sizeof( WC()->cart->get_cart() ) == 0 ) {
                                         echo WC()->cart->get_item_data( $cart_item );
                                     ?>
                                     
-                                    <?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . esc_html__( 'キロ数:', 'nm-framework' ) . ' ' . $cart_item['quantity'] . '</span>', $cart_item, $cart_item_key ); ?>
+                                    <?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . esc_html__( '単位数量:', 'nm-framework' ) . ' ' . $cart_item['quantity'] . '</span>', $cart_item, $cart_item_key ); ?>
                                     
                                     <?php echo $product_price; ?>
                                 </div>

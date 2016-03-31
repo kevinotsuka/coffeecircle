@@ -122,7 +122,7 @@ if ( $image_swap ) {
 			?>
             
             <div class="nm-shop-loop-price">
-                <?php woocommerce_template_loop_price(); echo ' /kg' ?>
+                <?php woocommerce_template_loop_price(); echo ' /単位' ?>
             </div>
             
             <div class="nm-shop-loop-actions">
