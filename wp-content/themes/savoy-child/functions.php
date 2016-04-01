@@ -66,6 +66,46 @@ function my_free_shipping( $is_available ) {
 }
 add_filter( 'woocommerce_shipping_free_shipping_is_available', 'my_free_shipping', 20 );
 
+
+/**
+*
+*Add Handling Fee on Checkout for Splendor
+*
+*/
+
+function add_surcharge( $cart_object ) {
+
+    global $woocommerce;
+    $specialfeecat = 227; // category id for the special fee
+    $spfee = 900; // initialize special fee
+    //$spfeeperprod = 1800; //special fee per product
+
+    foreach ( $cart_object->cart_contents as $key => $value ) {
+
+        $proid = $value['product_id']; //get the product id from cart
+        $quantiy = $value['quantity']; //get quantity from cart
+        $itmprice = $value['data']->price; //get product price
+
+        $terms = get_the_terms( $proid, 'product_cat' ); //get taxonamy of the prducts
+        if ( $terms && ! is_wp_error( $terms ) ) :
+            foreach ( $terms as $term ) {
+                $catid = $term->term_id;
+                if($specialfeecat == $proid ) {
+                    $spfee = $spfee * $quantiy;
+                }
+            }
+        endif;  
+    }
+
+    if($spfee > 0 ) {
+
+        $woocommerce->cart->add_fee( '手数料', $spfee, true, 'standard' );
+    }
+
+}
+
+add_action( 'woocommerce_cart_calculate_fees', 'add_surcharge' );
+
 /**
 * Function to redirect users whether logged in or not 
 */
