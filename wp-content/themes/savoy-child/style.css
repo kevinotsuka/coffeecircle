@@ -127,3 +127,8 @@ a#roaster8 {
 }
 
 */
+
+/*hiding customer details on checkout page so users don't have to input repeatedly*/
+#customer_details {
+    display: none;
+}
