@@ -249,8 +249,9 @@ class VTMIN_Parent_Cart_Validation {
           } 
           //v1.09.1  end          
        } //end if
+
+    print("ERRORS: ----- :". $i); 
     }  //end 'for' loop   
-    print("ERRORS: ----- :". sizeof($vtmin_cart->error_messages)); 
   }   
   
   
