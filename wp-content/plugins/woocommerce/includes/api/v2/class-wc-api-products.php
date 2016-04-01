@@ -455,7 +455,7 @@ class WC_API_Products extends WC_API_Resource {
 				'rating'         => get_comment_meta( $comment->comment_ID, 'rating', true ),
 				'reviewer_name'  => $comment->comment_author,
 				'reviewer_email' => $comment->comment_author_email,
-				'verified'       => (bool) wc_customer_bought_product( $comment->comment_author_email, $comment->user_id, $id ),
+				'verified'       => wc_review_is_from_verified_owner( $comment->comment_ID ),
 			);
 		}
 
@@ -707,7 +707,7 @@ class WC_API_Products extends WC_API_Resource {
 			'categories'         => wp_get_post_terms( $product->id, 'product_cat', array( 'fields' => 'names' ) ),
 			'tags'               => wp_get_post_terms( $product->id, 'product_tag', array( 'fields' => 'names' ) ),
 			'images'             => $this->get_images( $product ),
-			'featured_src'       => wp_get_attachment_url( get_post_thumbnail_id( $product->is_type( 'variation' ) ? $product->variation_id : $product->id ) ),
+			'featured_src'       => (string) wp_get_attachment_url( get_post_thumbnail_id( $product->is_type( 'variation' ) ? $product->variation_id : $product->id ) ),
 			'attributes'         => $this->get_attributes( $product ),
 			'downloads'          => $this->get_downloads( $product ),
 			'download_limit'     => (int) $product->download_limit,
@@ -783,10 +783,11 @@ class WC_API_Products extends WC_API_Resource {
 	/**
 	 * Save product meta
 	 *
-	 * @since 2.2
-	 * @param int $product_id
-	 * @param array $data
+	 * @since  2.2
+	 * @param  int $product_id
+	 * @param  array $data
 	 * @return bool
+	 * @throws WC_API_Exception
 	 */
 	protected function save_product_meta( $product_id, $data ) {
 		global $wpdb;
@@ -1244,10 +1245,11 @@ class WC_API_Products extends WC_API_Resource {
 	/**
 	 * Save variations
 	 *
-	 * @since 2.2
-	 * @param int $id
-	 * @param array $data
+	 * @since  2.2
+	 * @param  int $id
+	 * @param  array $data
 	 * @return bool
+	 * @throws WC_API_Exception
 	 */
 	protected function save_variations( $id, $data ) {
 		global $wpdb;
@@ -1764,9 +1766,10 @@ class WC_API_Products extends WC_API_Resource {
 	/**
 	 * Save product images
 	 *
-	 * @since 2.2
-	 * @param array $images
-	 * @param int $id
+	 * @since  2.2
+	 * @param  array $images
+	 * @param  int $id
+	 * @throws WC_API_Exception
 	 */
 	protected function save_product_images( $id, $images ) {
 		if ( is_array( $images ) ) {
@@ -1816,9 +1819,10 @@ class WC_API_Products extends WC_API_Resource {
 	/**
 	 * Upload image from URL
 	 *
-	 * @since 2.2
-	 * @param string $image_url
+	 * @since  2.2
+	 * @param  string $image_url
 	 * @return int|WP_Error attachment id
+	 * @throws WC_API_Exception
 	 */
 	public function upload_product_image( $image_url ) {
 		$file_name 		= basename( current( explode( '?', $image_url ) ) );
@@ -2082,6 +2086,7 @@ class WC_API_Products extends WC_API_Resource {
 	 * @param  string $order_by
 	 * @param  bool   $new_data
 	 * @return bool
+	 * @throws WC_API_Exception
 	 */
 	protected function validate_attribute_data( $name, $slug, $type, $order_by, $new_data = true ) {
 		if ( empty( $name ) ) {

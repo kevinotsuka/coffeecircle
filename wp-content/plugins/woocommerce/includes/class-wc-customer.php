@@ -34,14 +34,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_Customer {
 
 	/**
-	 * Stores customer data
+	 * Stores customer data.
 	 *
 	 * @var array
 	 */
 	protected $_data = array();
 
 	/**
-	 * Stores bool when data is changed
+	 * Stores bool when data is changed.
 	 *
 	 * @var bool
 	 */
@@ -122,7 +122,7 @@ class WC_Customer {
 	}
 
 	/**
-	 * Get default country for a customer
+	 * Get default country for a customer.
 	 *
 	 * @return string
 	 */
@@ -132,7 +132,7 @@ class WC_Customer {
 	}
 
 	/**
-	 * Get default state for a customer
+	 * Get default state for a customer.
 	 *
 	 * @return string
 	 */
@@ -142,7 +142,7 @@ class WC_Customer {
 	}
 
 	/**
-	 * has_calculated_shipping function.
+	 * Has calculated shipping?
 	 *
 	 * @return bool
 	 */
@@ -223,7 +223,7 @@ class WC_Customer {
 	}
 
 	/**
-	 * Gets the country from the current session
+	 * Gets the country from the current session.
 	 *
 	 * @return string
 	 */
@@ -322,7 +322,7 @@ class WC_Customer {
 	}
 
 	/**
-	 * get_taxable_address function.
+	 * Get taxable address.
 	 *
 	 * @return array
 	 */
@@ -358,7 +358,7 @@ class WC_Customer {
 	}
 
 	/**
-	 * Set default data for a customer
+	 * Set default data for a customer.
 	 */
 	public function set_default_data( $get_user_profile_data = true ) {
 		$this->_data = array(
@@ -550,7 +550,7 @@ class WC_Customer {
 	}
 
 	/**
-	 * calculated_shipping function.
+	 * Calculated shipping.
 	 *
 	 * @param boolean $calculated
 	 */
