@@ -250,7 +250,7 @@ class VTMIN_Parent_Cart_Validation {
           //v1.09.1  end          
        } //end if
     }  //end 'for' loop   
-    error_log("ERRORS: ----- :", sizeof($vtmin_cart->error_messages)); 
+    print("ERRORS: ----- :". sizeof($vtmin_cart->error_messages)); 
   }   
   
   
