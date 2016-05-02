@@ -77,7 +77,7 @@ function add_surcharge( $cart_object ) {
 
     global $woocommerce;
     $specialfeecat = 227; // category id for the special fee
-    $spfee = 900; // initialize special fee
+    $spfee = 0; // initialize special fee
     //$spfeeperprod = 1800; //special fee per product
 
     foreach ( $cart_object->cart_contents as $key => $value ) {
