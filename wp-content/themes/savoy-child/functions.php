@@ -76,32 +76,21 @@ add_filter( 'woocommerce_shipping_free_shipping_is_available', 'my_free_shipping
 function add_surcharge( $cart_object ) {
 
     global $woocommerce;
-    $specialfeecat = 227; // category id for the special fee
-    $spfee = 0; // initialize special fee
-    //$spfeeperprod = 1800; //special fee per product
-
+    $spfee = 900; // initialize special fee
+    $fee = 0;
     foreach ( $cart_object->cart_contents as $key => $value ) {
-
-        $proid = $value['product_id']; //get the product id from cart
-        $quantiy = $value['quantity']; //get quantity from cart
-        $itmprice = $value['data']->price; //get product price
-
-        $terms = get_the_terms( $proid, 'product_cat' ); //get taxonamy of the prducts
-        if ( $terms && ! is_wp_error( $terms ) ) :
-            foreach ( $terms as $term ) {
-                $catid = $term->term_id;
-                if($specialfeecat == $proid ) {
-                    $spfee = $spfee * $quantiy;
-                }
-            }
-        endif;  
+        $product_id = $value['product_id']; //get the product id from cart
+        $processing_fee =  get_post_meta($product_id, 'processing_fee', true);
+        $quantity = $value['quantity']; //get quantity from cart
+        $item_price = $value['data']->price; //get product price
+        if ($processing_fee >0) {
+          $fee = $spfee * $quantity;
+        }
     }
 
-    if($spfee > 0 ) {
-
-        $woocommerce->cart->add_fee( '手数料', $spfee, true, 'standard' );
+    if($fee > 0 ) {
+        $woocommerce->cart->add_fee( '手数料', $fee, true, 'standard' );
     }
-
 }
 
 add_action( 'woocommerce_cart_calculate_fees', 'add_surcharge' );

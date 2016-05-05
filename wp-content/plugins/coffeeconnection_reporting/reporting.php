@@ -137,7 +137,14 @@ function test_button_action() {
          $results = get_SQL($begin, $end, $user->ID);
          if (count($results) > 1) {
            $usermeta = array_map(function($a){ return $a[0]; }, get_user_meta($user->ID));
+           
+           foreach($results as $key=>$value) {
+           	 $results[$key]->unit_size =   get_post_meta($results[$key]->product_id, 'unit_size', true);
+           }
+
            $dataset[$user->ID]->orders = $results;
+           $dataset[$user->ID]->begin_date = $begin;
+           $dataset[$user->ID]->end_date = $end;
     	   $dataset[$user->ID]->email = $user->user_email;
     	   $dataset[$user->ID]->display_name = $user->user_nicename;
            $dataset[$user->ID]->billing_first_name = $usermeta['billing_first_name'];
@@ -162,7 +169,12 @@ function test_button_action() {
          if (count($results) > 1) {
            $user = get_user_by('id', $_POST['_ccr_user']);
            $usermeta =  array_map(function($a){ return $a[0]; }, get_user_meta($_POST['_ccr_user']));
+           foreach($results as $key=>$value) {
+           	 $results[$key]->unit_size =   get_post_meta($results[$key]->product_id, 'unit_size', true);
+           }
            $dataset[$_POST['_ccr_user']]->orders = $results;
+           $dataset[$_POST['_ccr_user']]->begin_date = $begin;
+           $dataset[$_POST['_ccr_user']]->end_date = $end;
            $dataset[$_POST['_ccr_user']]->email = $user->user_email;
            $dataset[$_POST['_ccr_user']]->display_name = $user->user_nicename;
 		   $dataset[$_POST['_ccr_user']]->billing_first_name = $usermeta['billing_first_name'];
