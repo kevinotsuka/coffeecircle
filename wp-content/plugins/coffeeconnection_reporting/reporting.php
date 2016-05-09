@@ -96,7 +96,7 @@ function reports_admin_page()
 function get_SQL($begin, $end, $userid){
   global $wpdb;
   $query = "select customer_id, order_id, product_id, order_item_name, 
-        qty, subtotal, tax, subtotal_tax, total, shipping_cost, post_date from (select {$wpdb->prefix}posts.id as order_id, {$wpdb->prefix}posts.post_date,  {$wpdb->prefix}woocommerce_order_items.order_item_name,
+        qty, subtotal, tax, subtotal_tax, total, shipping_cost, date(post_date) from (select {$wpdb->prefix}posts.id as order_id, {$wpdb->prefix}posts.post_date,  {$wpdb->prefix}woocommerce_order_items.order_item_name,
     max(if ({$wpdb->prefix}woocommerce_order_itemmeta.meta_key = '_qty',{$wpdb->prefix}woocommerce_order_itemmeta.meta_value, 0)) as 'qty',
     max(if ({$wpdb->prefix}woocommerce_order_itemmeta.meta_key = '_product_id',{$wpdb->prefix}woocommerce_order_itemmeta.meta_value, 0)) as 'product_id',
     max(if ({$wpdb->prefix}woocommerce_order_itemmeta.meta_key = '_line_subtotal',{$wpdb->prefix}woocommerce_order_itemmeta.meta_value, 0)) as 'subtotal',

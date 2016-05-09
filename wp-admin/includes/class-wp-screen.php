@@ -304,6 +304,7 @@ final class WP_Screen {
 					}
 					break;
 				case 'edit-tags' :
+				case 'term' :
 					if ( null === $post_type && is_object_in_taxonomy( 'post', $taxonomy ? $taxonomy : 'post_tag' ) )
 						$post_type = 'post';
 					break;
@@ -322,6 +323,7 @@ final class WP_Screen {
 				$id .= '-' . $post_type;
 				break;
 			case 'edit-tags' :
+			case 'term' :
 				if ( null === $taxonomy )
 					$taxonomy = 'post_tag';
 				// The edit-tags ID does not contain the post type. Look for it in the request.
@@ -530,7 +532,7 @@ final class WP_Screen {
 			}
 		}
 
-		sort( $priorities );
+		ksort( $priorities );
 
 		$sorted = array();
 		foreach ( $priorities as $list ) {
@@ -693,7 +695,7 @@ final class WP_Screen {
 	 *                                      Default 'Filter items list'.
 	 *     @type string $heading_pagination Screen reader text for the pagination heading.
 	 *                                      Default 'Items list navigation'.
-	 *     @type string heading_list        Screen reader text for the items list heading.
+	 *     @type string $heading_list       Screen reader text for the items list heading.
 	 *                                      Default 'Items list'.
 	 * }
 	 */
@@ -998,7 +1000,7 @@ final class WP_Screen {
 		 * Filter whether to show the Screen Options submit button.
 		 *
 		 * @since 4.4.0
-		 * 
+		 *
 		 * @param bool      $show_button Whether to show Screen Options submit button.
 		 *                               Default false.
 		 * @param WP_Screen $this        Current WP_Screen instance.
@@ -1087,7 +1089,7 @@ final class WP_Screen {
 
 			$id = "$column-hide";
 			echo '<label>';
-			echo '<input class="hide-column-tog" name="' . $id . '" type="checkbox" value="' . $column . '"' . checked( ! in_array( $column, $hidden ), true, false ) . ' />';
+			echo '<input class="hide-column-tog" name="' . $id . '" type="checkbox" id="' . $id . '" value="' . $column . '"' . checked( ! in_array( $column, $hidden ), true, false ) . ' />';
 			echo "$title</label>\n";
 		}
 		?>
@@ -1201,6 +1203,8 @@ final class WP_Screen {
 			return;
 		}
 
+		$view_mode_post_types = get_post_types( array( 'hierarchical' => false, 'show_ui' => true ) );
+
 		/**
 		 * Filter the post types that have different view mode options.
 		 *
@@ -1209,7 +1213,6 @@ final class WP_Screen {
 		 * @param array $view_mode_post_types Array of post types that can change view modes.
 		 *                                    Default hierarchical post types with show_ui on.
 		 */
-		$view_mode_post_types = get_post_types( array( 'hierarchical' => false, 'show_ui' => true ) );
 		$view_mode_post_types = apply_filters( 'view_mode_post_types', $view_mode_post_types );
 
 		if ( ! in_array( $this->post_type, $view_mode_post_types ) ) {
